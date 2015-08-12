@@ -7,10 +7,10 @@ lib-cov
 *.pid
 *.gz
 
-node_modules/*
+/node_modules/*
 npm-debug.log
 
-certs/*
-!certs/.gitkeep
+/certs
+!/certs/.gitkeep
 
 .DS_Store
