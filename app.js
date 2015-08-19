@@ -5,10 +5,10 @@ var bodyParser = require('body-parser');
 var User = require('./models/user_model.js');
 var mongoose = require('mongoose');
 
-if(process.env.OPENSHIFT_NODEJS_PORT) {
-	app.set('port', process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT || 3002);
-	app.set('ip', process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1");	
-}
+// if(process.env.OPENSHIFT_NODEJS_PORT) {
+// 	app.set('port', process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT || 3002);
+// 	app.set('ip', process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1");	
+// }
 
 var url = 'mongodb://localhost/voipapidb';
 
@@ -17,6 +17,15 @@ if (process.env.OPENSHIFT_APP_NAME) {
 	url = '127.0.0.1:27017/' + process.env.OPENSHIFT_APP_NAME;	
 }
 
+
+if(process.env.OPENSHIFT_NODEJS_PORT) {
+	var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
+	var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
+	app.listen(server_port, server_ip_address, function () {
+	  console.log( "Listening on " + server_ip_address + ", server_port " + port )
+	});
+}
+ 
 
 if(process.env.OPENSHIFT_MONGODB_DB_URL) {
   url = process.env.OPENSHIFT_MONGODB_DB_URL +
