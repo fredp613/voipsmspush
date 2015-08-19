@@ -4,11 +4,12 @@
 
 var agent = require('./_header')  
 var request = require('request');
-
 var User = require('../models/user_model.js');
 var Message = require('../models/message_model.js');
 var async = require('async')
-
+// var apnagent = require('apnagent')
+  // , agent = module.exports = new apnagent.Agent();
+console.log("push js being recognized")
 getUserList()
 
 function getUserList() {

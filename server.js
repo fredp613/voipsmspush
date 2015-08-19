@@ -91,8 +91,6 @@ app.patch("/users", function (req, res) { res.send("all the HTTP verb looks the 
 app.del("/users", function (req, res) { res.send("all the HTTP verb looks the same");});
 
 
-
-
 if (process.env.OPENSHIFT_NODEJS_PORT) {
 	var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
 	var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
