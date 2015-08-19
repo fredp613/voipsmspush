@@ -9,16 +9,15 @@ var mongoose = require('mongoose');
 var url = 'mongodb://localhost/voipapidb';
 
 if(process.env.OPENSHIFT_MONGODB_DB_URL) {
-  url = process.env.OPENSHIFT_MONGODB_DB_URL;
+  url = process.env.OPENSHIFT_MONGODB_DB_URL +
+    process.env.OPENSHIFT_APP_NAME;
 }
-
 
 var db = mongoose.connect(
     url,
     function(err) {
-        console.log("Error loading the db...");
+        console.log("Error loading the db..." + err);
     });
-
 
 app.use(bodyParser.urlencoded({
     extended: true
