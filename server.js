@@ -14,11 +14,13 @@ var mongoose = require('mongoose');
 var connection_string = 'mongodb://localhost/voipapidb';
 // if OPENSHIFT env variables are present, use the available connection info:
 if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD){
+	console.log("test")
   connection_string = "admin" + ":" +
   process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" +
   process.env.OPENSHIFT_MONGODB_DB_HOST + ':' +
   process.env.OPENSHIFT_MONGODB_DB_PORT + '/' +
   process.env.OPENSHIFT_APP_NAME;
+  console.log(connection_string)
 }
 
 mongoose.connect(connection_string);
