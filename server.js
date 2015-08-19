@@ -10,32 +10,15 @@ var mongoose = require('mongoose');
 // 	app.set('ip', process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1");	
 // }
 
-var url = 'mongodb://localhost/voipapidb';
-
-
-if (process.env.OPENSHIFT_APP_NAME) {
-	url = '127.0.0.1:27017/' + process.env.OPENSHIFT_APP_NAME;	
-}
-
-
-if(process.env.OPENSHIFT_NODEJS_PORT) {
-	var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
-	var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
-	app.listen(server_port, server_ip_address, function () {
-	  console.log( "Listening on " + server_ip_address + ", server_port " + port )
-	});
-}
- 
-
+var dbURL = 'mongodb://localhost/voipapidb';
 if(process.env.OPENSHIFT_MONGODB_DB_URL) {
-  url = process.env.OPENSHIFT_MONGODB_DB_URL +
+  dbURL = process.env.OPENSHIFT_MONGODB_DB_URL +
     process.env.OPENSHIFT_APP_NAME;
 }
 
-console.log(url)
 
 var db = mongoose.connect(
-    url,
+    dbURL,
     function(err) {
         console.log("Error loading the db..." + err);
     });
@@ -105,5 +88,39 @@ app.patch("/users", function (req, res) { res.send("all the HTTP verb looks the 
 app.del("/users", function (req, res) { res.send("all the HTTP verb looks the same");});
 // and HEAD and OPTIONS and what have you... 
 
-app.listen(3000);
+
+
+
+// if (process.env.OPENSHIFT_APP_NAME) {
+// 	url = '127.0.0.1:27017/' + process.env.OPENSHIFT_APP_NAME;	
+}
+
+
+if(process.env.OPENSHIFT_NODEJS_PORT) {
+	var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
+	var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
+	app.listen(server_port, server_ip_address, function () {
+	  console.log( "Listening on " + server_ip_address + ", server_port " + port )
+	});
+} else {
+	app.listen(3000);
+}
+ 
 console.log("you can now post, delete, get, and patch to ure site");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
