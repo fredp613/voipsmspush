@@ -6,19 +6,19 @@ var User = require('./models/user_model.js');
 
 var mongoose = require('mongoose');
 
+var url = 'mongodb://localhost/voipapidb';
 
-// default to a 'localhost' configuration:
-var connection_string = 'mongodb://localhost/voipapidb';
-// if OPENSHIFT env variables are present, use the available connection info:
-if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD){
-  connection_string = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
-  process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" +
-  process.env.OPENSHIFT_MONGODB_DB_HOST + ':' +
-  process.env.OPENSHIFT_MONGODB_DB_PORT + '/' +
-  process.env.OPENSHIFT_APP_NAME;
+if(process.env.OPENSHIFT_MONGODB_DB_URL) {
+  url = process.env.OPENSHIFT_MONGODB_DB_URL;
 }
 
-mongoose.connect(connection_string);
+
+var db = mongoose.connect(
+    url,
+    function(err) {
+        console.log("Error loading the db...");
+    });
+
 
 app.use(bodyParser.urlencoded({
     extended: true
@@ -86,4 +86,4 @@ app.del("/users", function (req, res) { res.send("all the HTTP verb looks the sa
 // and HEAD and OPTIONS and what have you... 
 
 app.listen(3000);
-console.log("you can now post, delete, get, and patch to http://localhost:3000/users");
+console.log("you can now post, delete, get, and patch to ure site");
