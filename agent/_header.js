@@ -14,6 +14,7 @@ process.env.DEBUG = process.env.DEBUG
  * Locate your certificate
  */
 
+ 
 var join = require('path').join
   , pfx = join(__dirname, '../certs/voipsms.p12');
 
@@ -44,19 +45,19 @@ var mongoose = require('mongoose');
 // mongoose.connect(connection_string);
 
 
-var dbURL = 'mongodb://localhost/voipapidb';
-if(process.env.OPENSHIFT_MONGODB_DB_URL) {
-  dbURL = process.env.OPENSHIFT_MONGODB_DB_URL +
-    process.env.OPENSHIFT_APP_NAME;
-}
+// var dbURL = 'mongodb://localhost/voipapidb';
+// if(process.env.OPENSHIFT_MONGODB_DB_URL) {
+//   dbURL = process.env.OPENSHIFT_MONGODB_DB_URL +
+//     process.env.OPENSHIFT_APP_NAME;
+// }
 
-var db = mongoose.connect(
-    dbURL,
-    function(err) {
-        if(err) {
-          console.log("Error loading the db..." + err);
-        }        
-    });
+// var db = mongoose.connect(
+//     dbURL,
+//     function(err) {
+//         if(err) {
+//           console.log("Error loading the db..." + err);
+//         }        
+//     });
 
 /*!
  * Configure agent
