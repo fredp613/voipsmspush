@@ -10,19 +10,33 @@ var mongoose = require('mongoose');
 // 	app.set('ip', process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1");	
 // }
 
-var dbURL = 'mongodb://localhost/voipapidb';
-if(process.env.OPENSHIFT_MONGODB_DB_URL) {
-  dbURL = process.env.OPENSHIFT_MONGODB_DB_URL +
-    process.env.OPENSHIFT_APP_NAME;
+// default to a 'localhost' configuration:
+var connection_string = 'mongodb://localhost/voipapidb';
+if OPENSHIFT env variables are present, use the available connection info:
+if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD){
+  connection_string = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
+  process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" +
+  process.env.OPENSHIFT_MONGODB_DB_HOST + ':' +
+  process.env.OPENSHIFT_MONGODB_DB_PORT + '/' +
+  process.env.OPENSHIFT_APP_NAME;
 }
 
-var db = mongoose.connect(
-    dbURL,
-    function(err) {
-    	  if(err) {
-					console.log("Error loading the db..." + err);
-    	  }        
-    });
+mongoose.connect(connection_string);
+
+
+// var dbURL = 'mongodb://localhost/voipapidb';
+// if(process.env.OPENSHIFT_MONGODB_DB_URL) {
+//   dbURL = process.env.OPENSHIFT_MONGODB_DB_URL +
+//     process.env.OPENSHIFT_APP_NAME;
+// }
+
+// var db = mongoose.connect(
+//     dbURL,
+//     function(err) {
+//     	  if(err) {
+// 					console.log("Error loading the db..." + err);
+//     	  }        
+//     });
 
 // var db = mongoose.connect(dbURL)
 
@@ -71,7 +85,7 @@ app.post("/users", function (req, res) {
 	  if (!doc) {			  	
 			u.save(function(err) {					  	  
 			  console.log('User created successfully!');			  
-			  res.send({"status":"success"})			  
+			  res.send({"status":"successWithoutDoc"})			  
 			});
 	  } else {
 	  	  doc.email = u.email,
