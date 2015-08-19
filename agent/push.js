@@ -13,7 +13,9 @@ console.log("push js being recognized")
 getUserList()
 
 function getUserList() {
+	console.log("getUserList")
 	User.find({}, function(err, users) {
+		console.log("user find")
 		if (err) throw err;
 		if (users.length > 0) {
 			 getUserMessages(users)	
@@ -24,7 +26,7 @@ function getUserList() {
 }
 
 function getUserMessages(users) {
-
+	 console.log("getUserMessages")
 	 async.eachSeries(users, function (user, callback) {
 
 		  var params = {
