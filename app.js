@@ -5,7 +5,20 @@ var bodyParser = require('body-parser');
 var User = require('./models/user_model.js');
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/voipapidb');
+
+
+// default to a 'localhost' configuration:
+var connection_string = 'mongodb://localhost/voipapidb';
+// if OPENSHIFT env variables are present, use the available connection info:
+if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD){
+  connection_string = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
+  process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" +
+  process.env.OPENSHIFT_MONGODB_DB_HOST + ':' +
+  process.env.OPENSHIFT_MONGODB_DB_PORT + '/' +
+  process.env.OPENSHIFT_APP_NAME;
+}
+
+mongoose.connect(connection_string);
 
 app.use(bodyParser.urlencoded({
     extended: true
@@ -55,12 +68,12 @@ app.post("/users", function (req, res) {
 			  res.send({"status":"success"})			  
 			});
 	  } else {
-	  	  doc.email: u.email,
-			  doc.password: u.pwd,	  
-			  doc.did: u.did,
-			  doc.device_token: u.deviceToken,
-			  doc.user_active: true,	  			  
-			  updated_at: new Date().toLocaleString()
+	  	  doc.email = u.email,
+			  doc.password = u.pwd,	  
+			  doc.did = u.did,
+			  doc.device_token = u.deviceToken,
+			  doc.user_active = true,	  			  
+			  updated_at = new Date().toLocaleString()
 			  doc.save();
 			  res.send({"status":"success"})			  
 	  }
