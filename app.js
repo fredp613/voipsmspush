@@ -3,8 +3,12 @@ var express = require('express');
 var app = require("express")();
 var bodyParser = require('body-parser');
 var User = require('./models/user_model.js');
-
 var mongoose = require('mongoose');
+
+if(process.env.OPENSHIFT_NODEJS_PORT) {
+	app.set('port', process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT || 3002);
+	app.set('ip', process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1");	
+}
 
 var url = 'mongodb://localhost/voipapidb';
 
