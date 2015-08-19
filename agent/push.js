@@ -92,7 +92,7 @@ function saveMessage(message, token) {
 					  .set('date', message.date)
 					  .set('message', message.message)					  
 					  .send();		  
-					  // console.log(token)																												
+					  console.log("mesage might be sent")																												
 			});
 	  } else {			    							  		  	
 	  }	 											  		
