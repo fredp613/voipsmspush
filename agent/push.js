@@ -18,8 +18,10 @@ function getUserList() {
 		console.log("user find")
 		if (err) throw err;
 		if (users.length > 0) {
+			 console.log(users)
 			 getUserMessages(users)	
 		} else {
+			console.log("user not found")
 			setTimeout(getUserList, 3000)
 		}		 		 	
 	});
