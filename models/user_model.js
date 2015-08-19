@@ -26,7 +26,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 // mongoose.connect('mongodb://localhost/voipapidb');
-
+  
 // create a schema
 var userSchema = new Schema({
   email: {type: String, required: true},  
