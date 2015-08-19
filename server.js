@@ -4,10 +4,10 @@ var app = require("express")();
 var bodyParser = require('body-parser');
 // var User = require('./models/user_model.js');
 var mongoose = require('mongoose');
-var agent = require('./_header')  
+var agent = require('./agent/_header')  
 var request = require('request');
-var User = require('../models/user_model.js');
-var Message = require('../models/message_model.js');
+var User = require('./models/user_model.js');
+var Message = require('./models/message_model.js');
 var async = require('async')
 
 // if(process.env.OPENSHIFT_NODEJS_PORT) {
