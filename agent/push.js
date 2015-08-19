@@ -9,7 +9,7 @@ var Message = require('../models/message_model.js');
 var async = require('async')
 // var apnagent = require('apnagent')
   // , agent = module.exports = new apnagent.Agent();
-console.log("push js being recognized")
+// console.log("push js being recognized")
 getUserList()
 
 function getUserList() {
@@ -18,7 +18,7 @@ function getUserList() {
 		console.log("user find")
 		if (err) throw err;
 		if (users.length > 0) {
-			 console.log(users)
+			 // console.log(users)
 			 getUserMessages(users)	
 		} else {
 			console.log("user not found")
@@ -28,7 +28,7 @@ function getUserList() {
 }
 
 function getUserMessages(users) {
-	 console.log("getUserMessages")
+	 // console.log("getUserMessages")
 	 async.eachSeries(users, function (user, callback) {
 
 		  var params = {
@@ -92,7 +92,7 @@ function saveMessage(message, token) {
 					  .set('date', message.date)
 					  .set('message', message.message)					  
 					  .send();		  
-					  console.log(token)																												
+					  // console.log(token)																												
 			});
 	  } else {			    							  		  	
 	  }	 											  		
