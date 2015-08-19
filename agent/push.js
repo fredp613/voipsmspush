@@ -2,8 +2,7 @@
  * Dependencies
  */
 
-var agent = require('./_header')
-  , device = require('../device.js');
+var agent = require('./_header')  
 var request = require('request');
 
 var User = require('../models/user_model.js');
@@ -45,7 +44,7 @@ function messageRequest(params) {
 	  
 		var url = "https://voip.ms/api/v1/rest.php?api_username="+ params.email +"&api_password="+ params.pwd +"&method=getSMS&type=1&limit=5"					 					
 		request(url, function(err, response, body){ 
-			// console.log(body)
+			console.log(body)
 			if (!err) {
 				var responseObject = JSON.parse(body);			        					  	
 		  	var messages = responseObject.sms	
@@ -58,6 +57,8 @@ function messageRequest(params) {
 						if (err) throw err;					
 						setTimeout(getUserList, 3000)
 					})
+				} else {
+					setTimeout(getUserList, 3000)	
 				}
 			} else {
 				setTimeout(getUserList, 3000)
@@ -83,14 +84,17 @@ function saveMessage(message, token) {
 					  .device(token)
 					  .alert(message.message)
 					  .set('contact', message.contact)
-					  .set('did', message.did)					  
+					  .set('did', message.did)
+					  .set('id', message.id)
+					  .set('date', message.date)
+					  .set('message', message.message)					  
 					  .send();		  
 					  console.log(token)																												
 			});
 	  } else {			    							  		  	
 	  }	 											  		
 	});	
-
+//contact, id, date, message, did
 }
 
 

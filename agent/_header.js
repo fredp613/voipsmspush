@@ -34,13 +34,15 @@ mongoose.connect('mongodb://localhost/voipapidb');
  */
 
 agent
-  .set('pfx file', pfx)
-  .set("passphrase", "Gabriella614$")
+  .set('pfx file', pfx)  
+  // .set("passphrase", "Gabriella614$")
+  .set("passphrase", process.env.CERT_PASS)
   .enable('sandbox');
 
 /*!
  * Error Mitigation
  */
+
 
 agent.on('message:error', function (err, msg) {
   switch (err.name) {
