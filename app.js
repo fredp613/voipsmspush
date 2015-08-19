@@ -8,10 +8,18 @@ var mongoose = require('mongoose');
 
 var url = 'mongodb://localhost/voipapidb';
 
+
+if (process.env.OPENSHIFT_APP_NAME) {
+	url = '127.0.0.1:27017/' + process.env.OPENSHIFT_APP_NAME;	
+}
+
+
 if(process.env.OPENSHIFT_MONGODB_DB_URL) {
   url = process.env.OPENSHIFT_MONGODB_DB_URL +
     process.env.OPENSHIFT_APP_NAME;
 }
+
+console.log(url)
 
 var db = mongoose.connect(
     url,
