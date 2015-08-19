@@ -9,9 +9,7 @@ var User = require('../models/user_model.js');
 var Message = require('../models/message_model.js');
 var async = require('async')
 
-
 getUserList()
-
 
 function getUserList() {
 	User.find({}, function(err, users) {

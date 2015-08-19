@@ -44,18 +44,18 @@ var mongoose = require('mongoose');
 // mongoose.connect(connection_string);
 
 
-var url = 'mongodb://localhost/voipapidb';
-
+var dbURL = 'mongodb://localhost/voipapidb';
 if(process.env.OPENSHIFT_MONGODB_DB_URL) {
-  url = process.env.OPENSHIFT_MONGODB_DB_URL +
+  dbURL = process.env.OPENSHIFT_MONGODB_DB_URL +
     process.env.OPENSHIFT_APP_NAME;
 }
 
-
 var db = mongoose.connect(
-    url,
+    dbURL,
     function(err) {
-        console.log("Error loading the db..." + err);
+        if(err) {
+          console.log("Error loading the db..." + err);
+        }        
     });
 
 /*!
