@@ -112,8 +112,15 @@ if (process.env.OPENSHIFT_NODEJS_PORT) {
 	app.listen(3000);
 }
 
+
+var PushLoop = require('./agent/push.js');
 var pushLoop = new PushLoop();
 pushLoop.startPushLoop();
+
+// var Animal = require("./agent/push.js");
+
+// var john = new Animal(3);
+// john.getAge();
  
 console.log("you can now post, delete, get, and patch to ure site");
 
