@@ -5,11 +5,6 @@ var bodyParser = require('body-parser');
 var User = require('./models/user_model.js');
 var mongoose = require('mongoose');
 
-// if(process.env.OPENSHIFT_NODEJS_PORT) {
-// 	app.set('port', process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT || 3002);
-// 	app.set('ip', process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1");	
-// }
-
 // default to a 'localhost' configuration:
 var connection_string = 'mongodb://localhost/voipapidb';
 // if OPENSHIFT env variables are present, use the available connection info:
@@ -116,6 +111,9 @@ if (process.env.OPENSHIFT_NODEJS_PORT) {
 } else {
 	app.listen(3000);
 }
+
+var pushLoop = new PushLoop();
+pushLoop.startPushLoop();
  
 console.log("you can now post, delete, get, and patch to ure site");
 

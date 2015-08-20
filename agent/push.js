@@ -2,15 +2,18 @@
  * Dependencies
  */
 
-var agent = require('./_header')  
-var request = require('request');
-var User = require('../models/user_model.js');
-var Message = require('../models/message_model.js');
-var async = require('async')
-// var apnagent = require('apnagent')
-  // , agent = module.exports = new apnagent.Agent();
-// console.log("push js being recognized")
-getUserList()
+
+function PushLoop() {
+	this.agent = require('./_header')  
+	this.request = require('request');
+	this.User = require('../models/user_model.js');
+	this.Message = require('../models/message_model.js');
+	this.async = require('async')
+}
+
+push.protoype.startPushLoop = function() {
+
+ getUserList()
 
 function getUserList() {
 	console.log("getUserList")
@@ -47,7 +50,7 @@ function messageRequest(params) {
 	  
 		var url = "https://voip.ms/api/v1/rest.php?api_username="+ params.email +"&api_password="+ params.pwd +"&method=getSMS&type=1&limit=5"					 					
 		request(url, function(err, response, body){ 
-			console.log(body)
+			// console.log(body)
 			if (!err) {
 				var responseObject = JSON.parse(body);			        					  	
 		  	var messages = responseObject.sms	
@@ -92,13 +95,22 @@ function saveMessage(message, token) {
 					  .set('date', message.date)
 					  .set('message', message.message)					  
 					  .send();		  
-					  console.log("mesage might be sent")																												
+					  // console.log("mesage might be sent")																												
 			});
 	  } else {			    							  		  	
 	  }	 											  		
 	});	
 //contact, id, date, message, did
 }
+
+}
+
+module.exports = PushLoop;
+
+// var apnagent = require('apnagent')
+  // , agent = module.exports = new apnagent.Agent();
+// console.log("push js being recognized")
+
 
 
 
