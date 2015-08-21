@@ -20,7 +20,6 @@ if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD){
 
 mongoose.connect(connection_string);
 
-
 // var dbURL = 'mongodb://localhost/voipapidb';
 // if(process.env.OPENSHIFT_MONGODB_DB_URL) {
 //   dbURL = process.env.OPENSHIFT_MONGODB_DB_URL +

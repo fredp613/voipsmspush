@@ -30,15 +30,14 @@ function PushLoop() {};
 	 getUserList()
 
 	function getUserList() {
-		console.log("getUserList")
+		// console.log("getUserList")
 		User.find({}, function(err, users) {
-			console.log("user find")
+			// console.log("user find")
 			if (err) throw err;
 			if (users.length > 0) {
 				 // console.log(users)
 				 getUserMessages(users)	
-			} else {
-				console.log("user not found")
+			} else {			  
 				setTimeout(getUserList, 3000)
 			}		 		 	
 		});
@@ -56,7 +55,10 @@ function PushLoop() {};
 				  messageRequest(params)		  			  		 
 			  callback(); // Alternatively: callback(new Error());
 			}, function (err) {
-			  if (err) { throw err; }		  	 
+			  if (err) {
+			  	console.log(err)
+					setTimeout(getUserList, 3000)			  	 
+			  } 			  
 			});
 	}
 
@@ -74,8 +76,10 @@ function PushLoop() {};
 							callback();
 
 						}, function(err) {
-							if (err) throw err;					
-							setTimeout(getUserList, 3000)
+							if (err) {
+								console.log(err)
+							}
+							setTimeout(getUserList, 3000) 							
 						})
 					} else {
 						setTimeout(getUserList, 3000)	
@@ -99,8 +103,10 @@ function PushLoop() {};
 				});	
 		  	console.log(token)
 			  m.save(function(e) {
-				  	if (e) throw e;		
-				  	 agent.createMessage()			  	 
+				  	if (e) {
+				  		console.log(e)
+				  	}	else {
+				  		 agent.createMessage()			  	 
 						  .device(token)
 						  .alert(message.message)
 						  .set('contact', message.contact)
@@ -108,7 +114,8 @@ function PushLoop() {};
 						  .set('id', message.id)
 						  .set('date', message.date)
 						  .set('message', message.message)					  
-						  .send();		  			
+						  .send();
+				  	}					  			  		
 				});
 		  } else {			    							  		  	
 		  }	 											  		
