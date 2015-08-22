@@ -98,10 +98,10 @@ function PushLoop() {};
 				  did: message.did,
 				  contact: message.contact, 
 				  message: message.message,
+				  date: message.date,
 				  created_at: new Date().toLocaleString(),
 				  updated_at: new Date().toLocaleString()   
-				});	
-		  	console.log(token)
+				});			  	
 			  m.save(function(e) {
 				  	if (e) {
 				  		console.log(e)

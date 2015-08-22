@@ -9,6 +9,7 @@ var messageSchema = new Schema({
   did: {type: String, required: true}, 
   contact: {type: String, required: true},  
   message: {type: String, required: true}, 
+  date: {type: String, required: true}, 
   created_at: {type: Date, required: true},
   updated_at: {type: Date, required: true}
 });
