@@ -60,13 +60,14 @@ function PushLoop() {};
 							if (err) {
 								console.log(err)
 							}
-							setTimeout(getUserList, 3000) 							
+							// setTimeout(getUserList, 3000) 							
 						})
 					} else {
-						setTimeout(getUserList, 3000)	
+						// setTimeout(getUserList, 3000)	
 					}
 				} else {
-					setTimeout(getUserList, 3000)
+					console.log(err)
+					// setTimeout(getUserList, 3000)
 				}			
 			});
 	}
@@ -98,8 +99,8 @@ function PushLoop() {};
 						  .send();
 				  	}					  			  		
 				});
-		  } else {			    							  		  	
-		  }	 											  		
+		  } //else {			    							  		  	
+		  // }	 											  		
 		});	
 	}
 
