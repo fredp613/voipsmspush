@@ -69,7 +69,9 @@ function PushLoop() {};
 					console.log(err)
 					// setTimeout(getUserList, 3000)
 				}			
+
 			});
+			setTimeout(getUserList, 3000)
 	}
 		
 	function saveMessage(message, token) {
