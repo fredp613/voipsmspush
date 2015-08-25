@@ -1,20 +1,4 @@
-/*!
- * Dependencies
- */
 
-
-// var method = Animal.prototype;
-
-// function Animal(age) {
-//     this._age = age;
-// }
-
-// method.getAge = function() {
-// 		console.log(this._age);
-//     return this._age;
-// };
-
-// module.exports = Animal;
 
 var method = PushLoop.prototype;
 var agent = require('./_header')  
@@ -29,13 +13,10 @@ function PushLoop() {};
 
 	 getUserList()
 
-	function getUserList() {
-		// console.log("getUserList")
-		User.find({}, function(err, users) {
-			// console.log("user find")
+	function getUserList() {		
+		User.find({}, function(err, users) {			
 			if (err) throw err;
-			if (users.length > 0) {
-				 // console.log(users)
+			if (users.length > 0) {				 
 				 getUserMessages(users)	
 			} else {			  
 				setTimeout(getUserList, 3000)
@@ -53,7 +34,7 @@ function PushLoop() {};
 		 	  	token: user.device_token
 			  }		  		  		  
 				  messageRequest(params)		  			  		 
-			  callback(); // Alternatively: callback(new Error());
+			  callback(); 
 			}, function (err) {
 			  if (err) {
 			  	console.log(err)
@@ -70,7 +51,7 @@ function PushLoop() {};
 				if (!err) {
 					var responseObject = JSON.parse(body);			        					  	
 			  	var messages = responseObject.sms	
-					if (responseObject["status"] == "success") /** && message does not exist in db  **/ {					  	    						  								  							
+					if (responseObject["status"] == "success")  {					  	    						  								  							
 						async.eachSeries(messages, function(message, callback){					
 							saveMessage(message, params.token)
 							callback();

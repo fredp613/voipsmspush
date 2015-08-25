@@ -5,37 +5,31 @@ var bodyParser = require('body-parser');
 var User = require('./models/user_model.js');
 var mongoose = require('mongoose');
 
-// default to a 'localhost' configuration:
 var connection_string = 'mongodb://localhost/voipapidb';
-// if OPENSHIFT env variables are present, use the available connection info:
+
 if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD){
 	console.log("test")
   connection_string = "admin" + ":" +
   process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" +
   process.env.OPENSHIFT_MONGODB_DB_HOST + ':' +
   process.env.OPENSHIFT_MONGODB_DB_PORT + '/' +
-  process.env.OPENSHIFT_APP_NAME;
-  // console.log(connection_string)
+  process.env.OPENSHIFT_APP_NAME;  
 }
 
+var options = { server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } }, 
+                replset: { socketOptions: { keepAlive: 1, connectTimeoutMS : 30000 } } };       
+ 
+/*
+ * Mongoose uses a different connection string format than MongoDB's standard.
+ * Use the mongodb-uri library to help you convert from the standard format to
+ * Mongoose's format.
+ */
+// var mongodbUri = 'mongodb://user:pass@host:port/db';
+// var mongooseUri = uriUtil.formatMongoose(mongodbUri);
+ 
+mongoose.connect(mongooseUri, options);
+
 mongoose.connect(connection_string);
-
-// var dbURL = 'mongodb://localhost/voipapidb';
-// if(process.env.OPENSHIFT_MONGODB_DB_URL) {
-//   dbURL = process.env.OPENSHIFT_MONGODB_DB_URL +
-//     process.env.OPENSHIFT_APP_NAME;
-// }
-
-// var db = mongoose.connect(
-//     dbURL,
-//     function(err) {
-//     	  if(err) {
-// 					console.log("Error loading the db..." + err);
-//     	  }        
-//     });
-
-// var db = mongoose.connect(dbURL)
-
 app.use(bodyParser.urlencoded({
     extended: true
 }));
