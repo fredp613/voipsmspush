@@ -78,8 +78,9 @@ function PushLoop() {};
 		
 	function saveMessage(message, token) {
 		Message.find({ message_id: message.id, token: token}, function (err, doc){	
-		  console.log(doc)
-		  // if (!doc) {	  			  	
+		  // console.log(doc)
+		  if (!doc || !doc.length) {	  
+		  console.log('emtpy')			  	
 		  	var m = new Message({
 				  message_id: message.id, 
 				  did: message.did,
@@ -106,7 +107,7 @@ function PushLoop() {};
 				  	}					  			  		
 				});
 		  // } //else {			    							  		  	
-		  // }	 											  		
+		  }	 											  		
 		});	
 	}
 
