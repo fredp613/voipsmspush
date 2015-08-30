@@ -75,7 +75,7 @@ function PushLoop() {};
 	}
 		
 	function saveMessage(message, token) {
-		Message.findOne({ message_id: message.id}, function (err, doc){	  
+		Message.findOne({ message_id: message.id, token: token}, function (err, doc){	  
 		  if (!doc) {	  	
 		  	var m = new Message({
 				  message_id: message.id, 

@@ -67,9 +67,7 @@ app.post("/users", function (req, res) {
 	  updated_at: new Date().toLocaleString()   
 	});
 
-	User.findOne({deviceToken: u.deviceToken}, function(){
 
-	})
 	User.findOne({ device_token: u.device_token}, function (err, doc){	  
 		if (err) console.log(err);
 	  if (!doc) {			  	
