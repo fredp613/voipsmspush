@@ -14,6 +14,7 @@ function PushLoop() {};
 	 getUserList()
 
 	function getUserList() {		
+
 		User.find({}, function(err, users) {			
 			if (err) throw err;
 			if (users.length > 0) {				 
@@ -52,7 +53,8 @@ function PushLoop() {};
 					var responseObject = JSON.parse(body);			        					  	
 			  	var messages = responseObject.sms	
 					if (responseObject["status"] == "success")  {					  	    						  								  							
-						async.eachSeries(messages, function(message, callback){					
+						async.eachSeries(messages, function(message, callback){		
+						  // console.log(message)			
 							saveMessage(message, params.token)
 							callback();
 
@@ -75,8 +77,9 @@ function PushLoop() {};
 	}
 		
 	function saveMessage(message, token) {
-		Message.findOne({ message_id: message.id, token: token}, function (err, doc){	  
-		  if (!doc) {	  	
+		Message.find({ message_id: message.id, token: token}, function (err, doc){	
+		  console.log(doc)
+		  if (!doc) {	  			  	
 		  	var m = new Message({
 				  message_id: message.id, 
 				  did: message.did,
@@ -84,7 +87,8 @@ function PushLoop() {};
 				  message: message.message,
 				  date: message.date,
 				  created_at: new Date().toLocaleString(),
-				  updated_at: new Date().toLocaleString()   
+				  updated_at: new Date().toLocaleString(),
+				  token: token  	 
 				});			  	
 			  m.save(function(e) {
 				  	if (e) {

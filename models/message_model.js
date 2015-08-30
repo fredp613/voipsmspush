@@ -10,7 +10,7 @@ var messageSchema = new Schema({
   date: {type: String, required: true}, 
   created_at: {type: Date, required: true},
   updated_at: {type: Date, required: true},
-  token: {type: String}
+  token: {type: String, required: true}
 });
 
 messageSchema.methods.existingMessage = function (cb) {
