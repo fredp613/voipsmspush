@@ -9,8 +9,8 @@ var messageSchema = new Schema({
   message: {type: String, required: true}, 
   date: {type: String, required: true}, 
   created_at: {type: Date, required: true},
-  updated_at: {type: Date, required: true}//,
-  // device_token: {type: String, required: true}
+  updated_at: {type: Date, required: true},
+  device_token: {type: String, required: true}
 });
 
 messageSchema.methods.existingMessage = function (cb) {

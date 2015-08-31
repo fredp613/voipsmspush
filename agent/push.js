@@ -77,7 +77,7 @@ function PushLoop() {};
 	}
 		
 	function saveMessage(message, token) {
-		Message.find({ message_id: message.id}, function (err, doc){	
+		Message.find({ message_id: message.id, device_token: token}, function (err, doc){	
 		  // console.log(doc)
 		  if (!doc || !doc.length) {	  
 				 
@@ -89,8 +89,8 @@ function PushLoop() {};
 						  message: message.message,
 						  date: message.date,
 						  created_at: new Date().toLocaleString(),
-						  updated_at: new Date().toLocaleString()//,
-						  // device_token: token  	 
+						  updated_at: new Date().toLocaleString(),
+						  device_token: token  	 
 						});			  	
 					  m.save(function(e) {
 						  	if (e) {						  		
