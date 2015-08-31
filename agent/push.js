@@ -81,7 +81,7 @@ function PushLoop() {};
 		  // console.log(doc)
 		  if (!doc || !doc.length) {	  
 				 
-				  console.log('emtpy')			  	
+				  console.log('emtpy today')			  	
 				  	var m = new Message({
 						  message_id: message.id, 
 						  did: message.did,
@@ -93,7 +93,7 @@ function PushLoop() {};
 						  // device_token: token  	 
 						});			  	
 					  m.save(function(e) {
-						  	if (e) {
+						  	if (e) {						  		
 						  		console.log(e)
 						  	}	else {
 						  		 agent.createMessage()			  	 
