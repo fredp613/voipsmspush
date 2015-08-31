@@ -77,36 +77,36 @@ function PushLoop() {};
 	}
 		
 	function saveMessage(message, token) {
-		Message.find({ message_id: message.id, token: token}, function (err, doc){	
+		Message.find({ message_id: message.id}, function (err, doc){	
 		  // console.log(doc)
 		  if (!doc || !doc.length) {	  
-		  console.log('emtpy')			  	
-		  	var m = new Message({
-				  message_id: message.id, 
-				  did: message.did,
-				  contact: message.contact, 
-				  message: message.message,
-				  date: message.date,
-				  created_at: new Date().toLocaleString(),
-				  updated_at: new Date().toLocaleString(),
-				  token: token  	 
-				});			  	
-			  m.save(function(e) {
-				  	if (e) {
-				  		console.log(e)
-				  	}	else {
-				  		 agent.createMessage()			  	 
-						  .device(token)
-						  .alert(message.message)
-						  .set('contact', message.contact)
-						  .set('did', message.did)
-						  .set('id', message.id)
-						  .set('date', message.date)
-						  .set('message', message.message)					  
-						  .send();
-				  	}					  			  		
-				});
-		  // } //else {			    							  		  	
+				 
+				  console.log('emtpy')			  	
+				  	var m = new Message({
+						  message_id: message.id, 
+						  did: message.did,
+						  contact: message.contact, 
+						  message: message.message,
+						  date: message.date,
+						  created_at: new Date().toLocaleString(),
+						  updated_at: new Date().toLocaleString()//,
+						  // device_token: token  	 
+						});			  	
+					  m.save(function(e) {
+						  	if (e) {
+						  		console.log(e)
+						  	}	else {
+						  		 agent.createMessage()			  	 
+								  .device(token)
+								  .alert(message.message)
+								  .set('contact', message.contact)
+								  .set('did', message.did)
+								  .set('id', message.id)
+								  .set('date', message.date)
+								  .set('message', message.message)					  
+								  .send();
+						  	}					  			  		
+						});		  
 		  }	 											  		
 		});	
 	}
