@@ -81,7 +81,7 @@ function PushLoop() {};
 	function saveMessage(message, token) {
 		 // { $and: [ { price: { $ne: 1.99 } }, { price: { $exists: true } }
 		// Message.find({ $and: [{ message_id: message.id}, {device_token: token}]}, function (err, doc){			  
-			Message.findOne({ $and: [{message_id: message.id},{device_token: token}] }, function (err, doc){
+			Message.findOne({message_id: message.id}, function (err, doc){
 			
 		  if (!doc) {	  				 
 				  console.log('emtpy today')			  	
