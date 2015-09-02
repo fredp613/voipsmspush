@@ -77,10 +77,9 @@ function PushLoop() {};
 	}
 		
 	function saveMessage(message, token) {
-		Message.find({ message_id: message.id, device_token: token}, function (err, doc){	
-		  // console.log(doc)
-		  if (!doc || !doc.length) {	  
-				 
+		 // { $and: [ { price: { $ne: 1.99 } }, { price: { $exists: true } }
+		Message.find({ $and { message_id: message.id}, {device_token: token} }, function (err, doc){			  
+		  if (!doc || !doc.length) {	  				 
 				  console.log('emtpy today')			  	
 				  	var m = new Message({
 						  message_id: message.id, 
@@ -104,7 +103,7 @@ function PushLoop() {};
 								  .set('id', message.id)
 								  .set('date', message.date)
 								  .set('message', message.message)					  
-								  .send();
+								  .send();								  
 						  	}					  			  		
 						});		  
 		  }	 											  		
