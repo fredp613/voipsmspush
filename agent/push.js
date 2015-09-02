@@ -79,7 +79,7 @@ function PushLoop() {};
 	function saveMessage(message, token) {
 		 // { $and: [ { price: { $ne: 1.99 } }, { price: { $exists: true } }
 		Message.find({ $and: [{ message_id: message.id}, {device_token: token}]}, function (err, doc){			  
-		  if (!doc || !doc.length) {	  				 
+		  if (!doc) {	  				 
 				  console.log('emtpy today')			  	
 				  	var m = new Message({
 						  message_id: message.id, 
@@ -107,7 +107,7 @@ function PushLoop() {};
 						  	}					  			  		
 						});		  
 		  }	 											  		
-		});	
+		}).limit(1);	
 	}
 
 };
