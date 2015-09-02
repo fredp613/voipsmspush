@@ -48,13 +48,15 @@ function PushLoop() {};
 		  
 			var url = "https://voip.ms/api/v1/rest.php?api_username="+ params.email +"&api_password="+ params.pwd +"&method=getSMS&type=1&limit=5"					 					
 			request(url, function(err, response, body){ 
-				// console.log(body)
+				
 				if (!err) {
+				
 					var responseObject = JSON.parse(body);			        					  	
 			  	var messages = responseObject.sms	
+
 					if (responseObject["status"] == "success")  {					  	    						  								  							
 						async.eachSeries(messages, function(message, callback){		
-						  // console.log(message)			
+						  console.log(params.token)			
 							saveMessage(message, params.token)
 							callback();
 
@@ -78,7 +80,9 @@ function PushLoop() {};
 		
 	function saveMessage(message, token) {
 		 // { $and: [ { price: { $ne: 1.99 } }, { price: { $exists: true } }
-		Message.find({ $and: [{ message_id: message.id}, {device_token: token}]}, function (err, doc){			  
+		// Message.find({ $and: [{ message_id: message.id}, {device_token: token}]}, function (err, doc){			  
+			Message.findOne({ $and: [{message_id: message.id},{device_token: token}] }, function (err, doc){
+			
 		  if (!doc) {	  				 
 				  console.log('emtpy today')			  	
 				  	var m = new Message({
@@ -107,7 +111,7 @@ function PushLoop() {};
 						  	}					  			  		
 						});		  
 		  }	 											  		
-		}).limit(1);	
+		}) //.limit(1);	
 	}
 
 };
