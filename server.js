@@ -29,8 +29,8 @@ var options = { server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000
  
 // mongoose.connect(mongooseUri, options);
 
-mongoose.connect(connection_string, options);
-// mongoose.connect(connection_string);
+// mongoose.connect(connection_string, options);
+mongoose.connect(connection_string);
 app.use(bodyParser.urlencoded({
     extended: true
 }));
