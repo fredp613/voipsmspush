@@ -107,7 +107,7 @@ if (process.env.OPENSHIFT_NODEJS_PORT) {
 
 var PushLoop = require('./agent/push.js');
 var pushLoop = new PushLoop();
-pushLoop.startPushLoop();
+pushLoop.go()
 
 // var Animal = require("./agent/push.js");
 
