@@ -5,7 +5,7 @@ var agent = require('./_header')
 var request = require('request');
 var User = require('../models/user_model.js');
 var Message = require('../models/message_model.js');
-// var async = require('async')
+var async = require('async')
 
 
 function PushLoop() {};
@@ -34,7 +34,7 @@ function PushLoop() {};
 			})			
 			// Async task (same in all examples in this chapter)
 			function async(arg, callback) {
-			  console.log('do something with \''+arg.device_token+'\', return 1 sec later');
+			  // console.log('do something with \''+arg.device_token+'\', return 1 sec later');
 
 			  	var url = "https://voip.ms/api/v1/rest.php?api_username="+ arg.email +"&api_password="+ arg.password +"&method=getSMS&type=1&limit=5"					 					
 					
@@ -44,78 +44,82 @@ function PushLoop() {};
 					  	var messages = responseObject.sms	
 					  	var status = responseObject.status
 					  	if (status === "success") {
-					  		console.log("success")
+					  		// console.log("success")
 
-					  		messages.forEach(function(m) {
-// $and: [ { price: { $ne: 1.99 } }, { price: { $exists: true } } ] }
-												  			Message.findOne( { $and : [{message_id: m.id}, {device_token:m.device_token}] }, function (err, doc){
+							  		messages.forEach(function(m) {
 
-																  					 if (doc == undefined || !doc) {
-																  					
-																					  			var message = new Message({
-																									  message_id: m.id, 
-																									  did: m.did,
-																									  contact: m.contact, 
-																									  message: m.message,
-																									  date: m.date,
-																									  created_at: new Date().toLocaleString(),
-																									  updated_at: new Date().toLocaleString(),
-																									  device_token: arg.device_token  	 
-																									});	
+							  			var message = new Message({
+												  message_id: m.id, 
+												  did: m.did,
+												  contact: m.contact, 
+												  message: m.message,
+												  date: m.date,
+												  created_at: new Date().toLocaleString(),
+												  updated_at: new Date().toLocaleString(),
+												  device_token: arg.device_token  	 
+												});	
 
+																		var query = { $and : [{message_id: m.id}, {device_token: arg.device_token}] }
+																		var query1 = { message_id: m.id }
+																		// var update = {
+																		// 	message_id: message.id, 
+																		//   did: message.did,
+																		//   contact: message.contact, 
+																		//   message: message.message,
+																		//   date: message.date,
+																		//   created_at: new Date().toLocaleString(),
+																		//   updated_at: new Date().toLocaleString(),
+																		//   device_token: arg.device_token 
+																		// }
+																		// var update = {$set: message.toObject()}
+																		// var options = { upsert: true, 'new': true  }
 
-																					  			message.save(function(e) {
-																									  	if (e) {						  		
-																									  		console.log(e)
-																									  	}	else {
-																									  		console.log("send a msg")
-																									  		// Send Notification
-																									  		// var apnConnection = new apn.Connection(options);
+														  			Message.findOne( query, function (err, doc){
+																				  			// Message.findOneAndUpdate(query,update,options,function(err, doc) {
+																				  				  // console.log(doc.message)
+																				  				  console.log(doc ? "existing message" : doc);
+																				  				  																				  					
+																				  					 if (!doc || doc == null) {
+																				  					 	  console.log("new message")
 
-																																// try {
-																																//     // Set the relevant parameters
-																																//     var note = new apn.Notification();
-																																//     note.expiry = Math.floor(Date.now() / 1000) + 3600; // 1h from now
-																																//     note.badge = 3;
-																																//     note.sound = "ping.aiff";
-																																//     note.alert = "\uD83D\uDCE7 \u2709 You have a new message";
-																																//     note.payload = {
-																																//         'messageFrom': 'Caroline'
-																																//     };
-																																//     agent.pushNotification(note, message.device_token);
-																																// } catch (ex) {
-																																//     sails.log.error('sending APN failed. Error=', ex);
-																																//     console.log(ex)
-																																// }
+																				  					 								message.save(function(e) {
+																				  					 									console.log("message saved")
+																				  					 									if (e) {
+																				  					 										console.log(e)
+																				  					 									} else {
+																				  					 										 agent.createMessage()			  	 
+																																			  .device(message.device_token)
+																																			  .alert(message.message)
+																																			  .set('contact', message.contact)
+																																			  .set('did', message.did)
+																																			  .set('id', message.id)
+																																			  .set('date', message.date)
+																																			  .set('message', message.message)					  
+																																				  .send(function(e) {
+																																				  	if (e) {
+																																				  		// console.log(e)
+																																				  	} else {
+																																				  		console.log("message sent")
+																																				  	}
 
-																									  		 agent.createMessage()			  	 
-																											  .device(message.device_token)
-																											  .alert(message.message)
-																											  .set('contact', message.contact)
-																											  .set('did', message.did)
-																											  .set('id', message.id)
-																											  .set('date', message.date)
-																											  .set('message', message.message)					  
-																											  .send(function(e) {
-																											  	if (e) {
-																											  		console.log(e)
-																											  	} else {
-																											  		console.log("message sent")
-																											  	}
+																																				  });	
+																				  					 									}
+																				  					 								})
 
-																											  });								  
-																									  	}					  			  		
-																									});	
+																									  								
+																															  									  
+																										  	}					  			  		
+																													
 
-																					  	}
-																  														  			
-													  		});	
-										});				  		
+																									  	
+																								  														  			
+																					  		});	
+												});				  		
 					  	}
 						  else {
 						  	console.log(err)
 						  }
-						}						
+						}					
 					});	
 			  
 			  setTimeout(function() { 			  
