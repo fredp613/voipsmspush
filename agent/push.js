@@ -22,6 +22,10 @@ function PushLoop() {};
 	
 	method.go = function() {
 		var userArr = [];
+		startLoop()
+
+		function startLoop() {
+
 
 		User.find({},function(err, users) {
 			if (err) throw err;
@@ -129,11 +133,19 @@ function PushLoop() {};
 				    return final();
 				  }
 			}
-			function final() { console.log('Done', results); }
+			function final() { 
+				console.log('Done'); 
+				startLoop();
+				// var pushLoop = new PushLoop();
+				// process.nextTick(pushLoop.go())
+
+
+			}
 
 			series(userArr.shift())
 		});
 	}
+}
 	
 
 module.exports = PushLoop;
