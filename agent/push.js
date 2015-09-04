@@ -50,7 +50,7 @@ function PushLoop() {};
 
 												  			Message.findOne({message_id: m.id}, function (err, doc){
 
-																  					 if (doc != undefined || !doc) {
+																  					 if (doc == undefined || !doc) {
 																  					
 																					  			var message = new Message({
 																									  message_id: m.id, 
