@@ -48,7 +48,7 @@ function PushLoop() {};
 
 					  		messages.forEach(function(m) {
 // $and: [ { price: { $ne: 1.99 } }, { price: { $exists: true } } ] }
-												  			Message.findOne( $and: [{message_id: m.id}, {device_token:m.device_token}], function (err, doc){
+												  			Message.findOne( $and : [{message_id: m.id}, {device_token:m.device_token}], function (err, doc){
 
 																  					 if (doc == undefined || !doc) {
 																  					
