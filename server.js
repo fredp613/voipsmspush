@@ -36,12 +36,8 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());  
                  
-app.get("/users", function (req, res) {
-	console.log("The req parameter contains request info");
-	console.log(req);
-	console.log("And the res the response information");
-	console.log(res);
-	res.send("Logged the request and response");
+app.get("/users", function (req, res) {	
+	res.send({"status":"success"})
 });
 
 app.get("/users/:id", function (req, res) {
