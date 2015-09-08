@@ -47,8 +47,7 @@ app.get("/users", function (req, res) {
 app.get("/users/:id", function (req, res) {
 	var id = req.params.id;
 	var color = req.query.color;
-	res.send("Yes? You asked for customer '" + id +
-		"' and passed the color = '" + color + "'");
+	res.send({"status":"success"})
 });
 
 app.post("/users", function (req, res) {
