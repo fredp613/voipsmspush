@@ -14,8 +14,8 @@ function CleanupMessages() {};
 		 var today = new Date()
 		 Message.find({created_at: { $lt: today }}).remove().exec();
 		 console.log("messages deleted")
-		 // setTimeout(CleanupMessages.go, 36000000);
-		 setTimeout(CleanupMessages.go, 3000);
+		 // setTimeout(CleanupMessages.go, 3000);
+		 setTimeout(CleanupMessages.go, 36000000);
 	}
 
 module.exports = CleanupMessages;
