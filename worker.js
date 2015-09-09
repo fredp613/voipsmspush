@@ -12,7 +12,7 @@ function CleanupMessages() {};
 
 	method.go = function() {
 		 var today = new Date()
-		 Message.find({created_at: { $lt: today }}).remove().exec();
+		 Message.find({created_at: { $lt: today.getDate() - 1 }}).remove().exec();
 		 console.log("messages deleted")
 		 // setTimeout(CleanupMessages.go, 3000);
 		 setTimeout(CleanupMessages.go, 36000000);
