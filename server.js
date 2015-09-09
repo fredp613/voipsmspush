@@ -104,6 +104,15 @@ var PushLoop = require('./agent/push.js');
 var pushLoop = new PushLoop();
 pushLoop.go()
 
+var Feedback = require('./feedback/live.js');
+var feedback = new Feedback();
+feedback.go();
+
+var CleanupMessages = require('./worker.js');
+var cleanUpmessages = new CleanupMessages();
+cleanUpmessages.go();
+
+
 // var Animal = require("./agent/push.js");
 
 // var john = new Animal(3);

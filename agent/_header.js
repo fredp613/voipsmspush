@@ -22,6 +22,10 @@ var join = require('path').join
  * Create a new gateway agent
  */
 
+ module.exports = {    
+    pfx: pfx
+}
+
 var apnagent = require('apnagent')
   , agent = module.exports = new apnagent.Agent();
 
