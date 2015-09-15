@@ -59,7 +59,7 @@ function Feedback() {};
 
     feedback.use(function (device, ts, next) {
       console.log('[feedback-1] %s', device.toString());
-      setTimeout(next, 300);
+      setTimeout(next, 300000);
     });
 
     /**
@@ -68,7 +68,7 @@ function Feedback() {};
 
     feedback.use(function (device, ts, next) {
       console.log('[feedback-2] %s', device.toString());
-      setTimeout(next, 300);
+      setTimeout(next, 300000);
     });
   } 
 
