@@ -93,9 +93,9 @@ if (process.env.OPENSHIFT_NODEJS_PORT) {
 }
 
 
-var PushLoop = require('./agent/push.js');
-var pushLoop = new PushLoop();
-pushLoop.go()
+// var PushLoop = require('./agent/push.js');
+// var pushLoop = new PushLoop();
+// pushLoop.go()
 
 // var Feedback = require('./feedback/live.js');
 // var feedback = new Feedback();
