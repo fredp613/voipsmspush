@@ -8,8 +8,6 @@ var Message = require('./models/message_model.js');
 var async = require('async')
 
 function CleanupMessages() {};
-
-
 	method.go = function() {
 		 var today = new Date()
 		 Message.find({created_at: { $lt: today.getDate() - 1 }}).remove().exec();

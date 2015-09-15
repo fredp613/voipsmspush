@@ -8,7 +8,7 @@ var mongoose = require('mongoose');
 var connection_string = 'mongodb://localhost/voipapidb';
 
 if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD){
-	console.log("test")
+	console.log("what the hell? server.js")
   connection_string = "admin" + ":" +
   process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" +
   process.env.OPENSHIFT_MONGODB_DB_HOST + ':' +
