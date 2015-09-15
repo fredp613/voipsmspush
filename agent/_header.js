@@ -23,7 +23,7 @@ var join = require('path').join
  */
 
  module.exports = {    
-    pfx: pfx
+    pfx: pfxProd
 }
 
 var apnagent = require('apnagent')
@@ -56,7 +56,7 @@ agent
   .set('pfx file', pfxProd)  
   // .set("passphrase", "Gabriella614$")
   .set("passphrase", process.env.CERT_PASS)
-  .enable('sandbox');
+  .enable('production');
 
 /*!
  * Error Mitigation
