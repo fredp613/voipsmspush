@@ -15,7 +15,7 @@ function PushLoop() {};
 		var userArr = [];
 		startLoop()
 
-		function startLoop() {
+		function startLoop() {	
 
 
 		User.find({},function(err, users) {

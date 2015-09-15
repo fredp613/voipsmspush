@@ -77,8 +77,12 @@ app.del("/users", function (req, res) { res.send("all the HTTP verb looks the sa
 
 
 if (process.env.OPENSHIFT_NODEJS_PORT) {	
-	var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
-	var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
+	// var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
+	// var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
+
+	var server_port = process.env.OPENSHIFT_INTERNAL_IP || process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
+	var server_ip_address = process.env.OPENSHIFT_INTERNAL_IP || process.env.OPENSHIFT_NODEJS_PORT || 3030;
+
 	console.log("port is:" + server_port)
 	console.log("server ip address is:" + server_ip_address)
 	app.listen(server_port, server_ip_address, function () {
@@ -93,19 +97,14 @@ var PushLoop = require('./agent/push.js');
 var pushLoop = new PushLoop();
 pushLoop.go()
 
-var Feedback = require('./feedback/live.js');
-var feedback = new Feedback();
-feedback.go();
+// var Feedback = require('./feedback/live.js');
+// var feedback = new Feedback();
+// feedback.go();
 
-var CleanupMessages = require('./worker.js');
-var cleanUpmessages = new CleanupMessages();
-cleanUpmessages.go();
+// var CleanupMessages = require('./worker.js');
+// var cleanUpmessages = new CleanupMessages();
+// cleanUpmessages.go();
 
-
-// var Animal = require("./agent/push.js");
-
-// var john = new Animal(3);
-// john.getAge();
  
 console.log("you can now post, delete, get, and patch to ure site");
 
