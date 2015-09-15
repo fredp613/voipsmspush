@@ -89,9 +89,11 @@ app.patch("/users", function (req, res) { res.send("all the HTTP verb looks the 
 app.del("/users", function (req, res) { res.send("all the HTTP verb looks the same");});
 
 
-if (process.env.OPENSHIFT_NODEJS_PORT) {
+if (process.env.OPENSHIFT_NODEJS_PORT) {	
 	var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
 	var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
+	console.log("port is:" + server_port)
+	console.log("server ip address is:" + server_port)
 	app.listen(server_port, server_ip_address, function () {
 	  console.log( "Listening on " + server_ip_address + ", server_port " + server_port )
 	});
