@@ -26,17 +26,12 @@ if (process.env.MONGOLAB_URI) {
 	connection_string = process.env.MONGOLAB_URI	
 }
 
-
+console.log("connection string is:" + connection_string)
 // console.log("outside context:" + connection_string); 
 // mongoose.connect(connection_string);
 // app.use(bodyParser.urlencoded({
 //     extended: true
 // }));
-
-
-if (process.env.MONGOLAB_URI) {
-	connection_string = process.env.MONGOLAB_URI	
-}
 
 
 mongoose.connect(connection_string, function (error) {
