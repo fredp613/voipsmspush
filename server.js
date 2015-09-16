@@ -107,17 +107,17 @@ if (process.env.PORT) {
 }
 
 
-// var PushLoop = require('./agent/push.js');
-// var pushLoop = new PushLoop();
-// pushLoop.go()
+var PushLoop = require('./agent/push.js');
+var pushLoop = new PushLoop();
+pushLoop.go()
 
-// var Feedback = require('./feedback/live.js');
-// var feedback = new Feedback();
-// feedback.go();
+var Feedback = require('./feedback/live.js');
+var feedback = new Feedback();
+feedback.go();
 
-// var CleanupMessages = require('./worker.js');
-// var cleanUpmessages = new CleanupMessages();
-// cleanUpmessages.go();
+var CleanupMessages = require('./worker.js');
+var cleanUpmessages = new CleanupMessages();
+cleanUpmessages.go();
 
  
 console.log("you can now post, delete, get, and patch to ure site");
