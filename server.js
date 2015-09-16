@@ -4,7 +4,6 @@ var app = require("express")();
 var bodyParser = require('body-parser');
 var User = require('./models/user_model.js');
 var mongoose = require('mongoose');
-
 var connection_string = 'mongodb://localhost/voipapidb';
 
 if (process.env.MONGOLAB_URI) {
@@ -47,25 +46,27 @@ app.post("/users", function (req, res) {
 	  updated_at: new Date().toLocaleString()   
 	});
 
+	res.send{"email":email}
 
-	User.findOne({ device_token: u.device_token}, function (err, doc){	  
-		if (err) console.log(err);
-	  if (!doc) {			  	
-			u.save(function(err) {					  	  
-			  console.log('User created successfully!');			  
-			  res.send({"status":"successWithoutDoc"})			  
-			});
-	  } else {
-	  	  doc.email = u.email,
-			  doc.password = u.pwd,	  
-			  doc.did = u.did,
-			  doc.device_token = u.deviceToken,
-			  doc.user_active = true,	  			  
-			  updated_at = new Date().toLocaleString()
-			  doc.save();
-			  res.send({"status":"success"})			  
-	  }
-	});  
+
+	// User.findOne({ device_token: u.device_token}, function (err, doc){	  
+	// 	if (err) console.log(err);
+	//   if (!doc) {			  	
+	// 		u.save(function(err) {					  	  
+	// 		  console.log('User created successfully!');			  
+	// 		  res.send({"status":"successWithoutDoc"})			  
+	// 		});
+	//   } else {
+	//   	  doc.email = u.email,
+	// 		  doc.password = u.pwd,	  
+	// 		  doc.did = u.did,
+	// 		  doc.device_token = u.deviceToken,
+	// 		  doc.user_active = true,	  			  
+	// 		  updated_at = new Date().toLocaleString()
+	// 		  doc.save();
+	// 		  res.send({"status":"success"})			  
+	//   }
+	// });  
 });
 
 app.post("/users", function (req, res) { res.send("all the HTTP verb looks the same");});
