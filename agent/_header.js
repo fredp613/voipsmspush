@@ -23,7 +23,7 @@ var join = require('path').join
  */
 
  module.exports = {    
-    pfxProd: pfxProd
+    pfx: pfx
 }
 
 var apnagent = require('apnagent')
@@ -38,11 +38,11 @@ var async = require('async')
  */
 
 agent
-  .set('pfx file', pfxProd)  
+  .set('pfx file', pfx)  
   // .set("passphrase", "Gabriella614$")
   // .set("passphrase", process.env.CERT_PASS)
   .set("passphrase", process.env.CERT_PASS)
-  .enable('production');
+  .enable('sandbox');
 
 /*!
  * Error Mitigation
@@ -99,7 +99,7 @@ agent.connect(function (err) {
   }
 
   // it worked!
-  var env = agent.enabled('production')
+  var env = agent.enabled('sandbox')
     ? 'sandbox'
     : 'production';
 
