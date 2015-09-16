@@ -38,10 +38,10 @@ function Feedback() {};
    var feedback = new apnagent.Feedback();
 
     feedback
-    .set('pfx file', pfx)  
+    .set('pfx file', pfxProd)  
   // .set("passphrase", "Gabriella614$")
     .set("passphrase", process.env.CERT_PASS)
-    .enable('sandbox')
+    .enable('production')
     .connect(function (err) {
       if (err && 'FeedbackAuthorizationError' === err.name) {
         console.log('%s: %s', err.name, err.message);
