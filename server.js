@@ -36,15 +36,15 @@ app.post("/users", function (req, res) {
 	var did = req.body.user.did;
 	var deviceToken = req.body.user.device;
 		
-	var u = new User({
-	  email: email,
-	  password: pwd,	  
-	  did: did,
-	  device_token: deviceToken,
-	  user_active: true,	  
-	  created_at: new Date().toLocaleString(),
-	  updated_at: new Date().toLocaleString()   
-	});
+	// var u = new User({
+	//   email: email,
+	//   password: pwd,	  
+	//   did: did,
+	//   device_token: deviceToken,
+	//   user_active: true,	  
+	//   created_at: new Date().toLocaleString(),
+	//   updated_at: new Date().toLocaleString()   
+	// });
 
 	res.send({"status":"successful"})
 
@@ -69,9 +69,9 @@ app.post("/users", function (req, res) {
 	// });  
 });
 
-app.post("/users", function (req, res) { res.send("all the HTTP verb looks the same");});
-app.patch("/users", function (req, res) { res.send("all the HTTP verb looks the same");});
-app.del("/users", function (req, res) { res.send("all the HTTP verb looks the same");});
+// app.post("/users", function (req, res) { res.send("all the HTTP verb looks the same");});
+// app.patch("/users", function (req, res) { res.send("all the HTTP verb looks the same");});
+// app.del("/users", function (req, res) { res.send("all the HTTP verb looks the same");});
 
 if (process.env.PORT) {
 	app.listen(process.env.PORT || 5000, function () {	  
