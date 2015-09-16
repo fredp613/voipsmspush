@@ -46,7 +46,7 @@ app.post("/users", function (req, res) {
 	  updated_at: new Date().toLocaleString()   
 	});
 
-	res.send{"email":email}
+	res.send{("email":email});
 
 
 	// User.findOne({ device_token: u.device_token}, function (err, doc){	  
