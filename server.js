@@ -46,27 +46,26 @@ app.post("/users", function (req, res) {
 	  updated_at: new Date().toLocaleString()   
 	});
 
-	res.send({"status":"successful"})
+	
 
-
-	// User.findOne({ device_token: u.device_token}, function (err, doc){	  
-	// 	if (err) console.log(err);
-	//   if (!doc) {			  	
-	// 		u.save(function(err) {					  	  
-	// 		  console.log('User created successfully!');			  
-	// 		  res.send({"status":"successWithoutDoc"})			  
-	// 		});
-	//   } else {
-	//   	  doc.email = u.email,
-	// 		  doc.password = u.pwd,	  
-	// 		  doc.did = u.did,
-	// 		  doc.device_token = u.deviceToken,
-	// 		  doc.user_active = true,	  			  
-	// 		  updated_at = new Date().toLocaleString()
-	// 		  doc.save();
-	// 		  res.send({"status":"success"})			  
-	//   }
-	// });  
+	User.findOne({ device_token: u.device_token}, function (err, doc){	  
+		if (err) console.log(err);
+	  if (!doc) {			  	
+			u.save(function(err) {					  	  
+			  console.log('User created successfully!');			  
+			  res.send({"status":"successWithoutDoc"})			  
+			});
+	  } else {
+	  	  doc.email = u.email,
+			  doc.password = u.pwd,	  
+			  doc.did = u.did,
+			  doc.device_token = u.deviceToken,
+			  doc.user_active = true,	  			  
+			  updated_at = new Date().toLocaleString()
+			  doc.save();
+			  res.send({"status":"success"})			  
+	  }
+	});  
 });
 
 // app.post("/users", function (req, res) { res.send("all the HTTP verb looks the same");});
