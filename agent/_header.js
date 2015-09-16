@@ -38,8 +38,9 @@ var async = require('async')
  */
 
 agent
-  .set('pfx file', pfxProd)  
+  .set('pfx file', pfx)  
   // .set("passphrase", "Gabriella614$")
+  // .set("passphrase", process.env.CERT_PASS)
   .set("passphrase", process.env.CERT_PASS)
   .enable('sandbox');
 
