@@ -16,10 +16,8 @@ function PushLoop() {};
 		startLoop()
 
 		function startLoop() {	
-			console.log("loop started")
-
-		User.find({},function(err, users) {
-			console.log(err)
+			
+		User.find({},function(err, users) {			
 			if (err) throw err;
 			users.forEach(function(u) {
 				userArr.push(u)							
