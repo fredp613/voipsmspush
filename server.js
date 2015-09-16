@@ -7,19 +7,29 @@ var mongoose = require('mongoose');
 
 var connection_string = 'mongodb://localhost/voipapidb';
 
-if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD){	  
-  connection_string = process.env.OPENSHIFT_MONGODB_DB_URL + "nodejs"
-  console.log(connection_string)  
+// if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD){	  
+//   connection_string = process.env.OPENSHIFT_MONGODB_DB_URL + "nodejs"
+//   console.log(connection_string)  
+// }
+
+// var options = { server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } }, 
+//                 replset: { socketOptions: { keepAlive: 1, connectTimeoutMS : 30000 } } };       
+
+// console.log("outside context:" + connection_string); 
+// mongoose.connect(connection_string);
+// app.use(bodyParser.urlencoded({
+//     extended: true
+// }));
+
+
+if (process.env.MONGOLAB_URI) {
+	connection_string = process.env.MONGOLAB_URI	
 }
 
-var options = { server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } }, 
-                replset: { socketOptions: { keepAlive: 1, connectTimeoutMS : 30000 } } };       
-
-console.log("outside context:" + connection_string); 
-mongoose.connect(connection_string);
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
+mongoose.connect(connection_string, function (error) {
+    if (error) console.error(error);
+    else console.log('mongo connected');
+});
 
 app.use(bodyParser.json());  
                  
@@ -76,17 +86,21 @@ app.patch("/users", function (req, res) { res.send("all the HTTP verb looks the 
 app.del("/users", function (req, res) { res.send("all the HTTP verb looks the same");});
 
 
-if (process.env.OPENSHIFT_NODEJS_PORT) {	
+// if (process.env.OPENSHIFT_NODEJS_PORT) {	
 	// var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
 	// var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
 
-	var server_port = process.env.OPENSHIFT_INTERNAL_IP || process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
-	var server_ip_address = process.env.OPENSHIFT_INTERNAL_IP || process.env.OPENSHIFT_NODEJS_PORT || 3030;
+	// var server_port = process.env.OPENSHIFT_INTERNAL_IP || process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
+	// var server_ip_address = process.env.OPENSHIFT_INTERNAL_IP || process.env.OPENSHIFT_NODEJS_PORT || 3030;
 
-	console.log("port is:" + server_port)
-	console.log("server ip address is:" + server_ip_address)
-	app.listen(server_port, server_ip_address, function () {
-	  console.log( "Listening on " + server_ip_address + ", server_port " + server_port )
+	// console.log("port is:" + server_port)
+	// console.log("server ip address is:" + server_ip_address)
+if (process.env.PORT) {
+	// app.listen(server_port, server_ip_address, function () {
+	//   console.log( "Listening on " + server_ip_address + ", server_port " + server_port )
+	// });
+	app.listen(process.env.PORT || 5000, function () {
+	  
 	});
 } else {
 	app.listen(3000);
