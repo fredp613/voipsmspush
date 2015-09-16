@@ -119,6 +119,8 @@ var CleanupMessages = require('./worker.js');
 var cleanUpmessages = new CleanupMessages();
 cleanUpmessages.go();
 
+//test
+
  
 console.log("you can now post, delete, get, and patch to ure site");
 
