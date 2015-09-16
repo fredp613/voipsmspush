@@ -16,11 +16,9 @@ mongoose.connect(process.env.MONGOLAB_URI, function (error) {
     if (error) console.error(error);
     else console.log('mongo connected');
 });
+app.use(bodyParser()); 
+app.use(bodyParser.json());  
 
-// app.use(bodyParser.json());  
-app.use(express.json());
-app.use(express.urlencoded());
-                 
 app.get("/users", function (req, res) {	
 	res.send({"status":"success"})
 });
