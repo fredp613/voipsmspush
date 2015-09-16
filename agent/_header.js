@@ -16,7 +16,7 @@ process.env.DEBUG = process.env.DEBUG
 
  
 var join = require('path').join
-  , pfx = join(__dirname, '../certs/voipsms.p12'), pfxProd = join(__dirname, '../certs/voipsmsprod.p12');
+  , pfx = join(__dirname, '../certs/voipsms.p12'), pfxProd = process.env.PROD_P12;
 
 /*!
  * Create a new gateway agent
@@ -39,8 +39,6 @@ var async = require('async')
 
 agent
   .set('pfx file', pfxProd)  
-  // .set("passphrase", "Gabriella614$")
-  // .set("passphrase", process.env.CERT_PASS)
   .set("passphrase", process.env.CERT_PASS)
   .enable('production');
 

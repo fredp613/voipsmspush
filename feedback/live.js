@@ -21,7 +21,7 @@ var apnagent = require('apnagent')
 
 
 var join = require('path').join
-  , pfx = join(__dirname, '../certs/voipsms.p12'), pfxProd = join(__dirname, '../certs/voipsmsprod.p12');
+  , pfx = join(__dirname, '../certs/voipsms.p12'), pfxProd = process.env.PROD_P12;
 
 /**
  * Construct Feedback
