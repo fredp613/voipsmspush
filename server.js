@@ -32,19 +32,19 @@ app.get("/users/:id", function (req, res) {
 app.post("/users", function (req, res) {
 	// console.log(req.body);
 	var email = req.body.user.email;
-	// var pwd = req.body.user.pwd;
-	// var did = req.body.user.did;
-	// var deviceToken = req.body.user.device;
+	var pwd = req.body.user.pwd;
+	var did = req.body.user.did;
+	var deviceToken = req.body.user.device;
 		
-	// var u = new User({
-	//   email: email,
-	//   password: pwd,	  
-	//   did: did,
-	//   device_token: deviceToken,
-	//   user_active: true,	  
-	//   created_at: new Date().toLocaleString(),
-	//   updated_at: new Date().toLocaleString()   
-	// });
+	var u = new User({
+	  email: email,
+	  password: pwd,	  
+	  did: did,
+	  device_token: deviceToken,
+	  user_active: true,	  
+	  created_at: new Date().toLocaleString(),
+	  updated_at: new Date().toLocaleString()   
+	});
 
 	res.send({"status":"successful"})
 
