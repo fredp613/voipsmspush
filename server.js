@@ -31,7 +31,7 @@ app.get("/users/:id", function (req, res) {
 
 app.post("/users", function (req, res) {
 	// console.log(req.body);
-	// var email = req.body.user.email;
+	var email = req.body.user.email;
 	// var pwd = req.body.user.pwd;
 	// var did = req.body.user.did;
 	// var deviceToken = req.body.user.device;
