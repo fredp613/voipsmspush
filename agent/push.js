@@ -76,8 +76,10 @@ function PushLoop() {};
 						  					 								message.save(function(e) {
 						  					 									console.log("message saved")
 						  					 									if (e) {
+						  					 										console.log("there is an error")
 						  					 										console.log(e)
 						  					 									} else {
+						  					 										console.log("there isnt an error")
 						  					 										 agent.createMessage()			  	 
 																					  .device(message.device_token)
 																					  .alert(message.message)
@@ -88,8 +90,10 @@ function PushLoop() {};
 																					  .set('message', message.message)					  
 																						  .send(function(e) {
 																						  	if (e) {
+																						  		console.log("there is a push error")
 																						  		console.log(e)
 																						  	} else {
+																						  		console.log("there is no push error")
 																						  		console.log("message sent")
 																						  	}
 
