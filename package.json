@@ -1,43 +1,42 @@
-{
-  "name": "voipapi_minimal",
-  "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
-  "scripts": {
-    // "start": "node ./server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Fred Pearson",
-  "license": "ISC",
-  "dependencies": {
-    "express": "4.13.3",
-    "body-parser": "*",
-    "method-override": "*",
-    "apnagent": "1.1.x",
-    "request": "2.60.0",
-    "mongoose": "4.1.1",
-    "async": "1.4.0"      
-  },
-  "engines": {
-    "node": ">=0.10.25"
-  }
-}
-
 // {
-//   "private": true,
+//   "name": "voipapi_minimal",
+//   "version": "1.0.0",
+//   "description": "",
+//   "main": "server.js",
+//   "scripts": {    
+//     "test": "echo \"Error: no test specified\" && exit 1"
+//   },
+//   "author": "Fred Pearson",
+//   "license": "ISC",
 //   "dependencies": {
-//     "express": "^4.13.3",
+//     "express": "4.13.3",
 //     "body-parser": "*",
 //     "method-override": "*",
 //     "apnagent": "1.1.x",
 //     "request": "2.60.0",
 //     "mongoose": "4.1.1",
-//     "async": "1.4.0" 
+//     "async": "1.4.0"      
 //   },
 //   "engines": {
 //     "node": ">=0.10.25"
 //   }
 // }
+
+{
+  "private": true,
+  "dependencies": {
+    "express": "^4.13.3",
+    "body-parser": "*",
+    "method-override": "*",
+    "apnagent": "1.1.x",
+    "request": "2.60.0",
+    "mongoose": "4.1.1",
+    "async": "1.4.0" 
+  },
+  "engines": {
+    "node": ">=0.10.25"
+  }
+}
 
 
 
