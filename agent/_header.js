@@ -23,11 +23,11 @@ var join = require('path').join
  */
 
 var apnagent = require('apnagent')
-  // , agent = module.exports = new apnagent.Agent();
+  , agent = module.exports = new apnagent.Agent();
 
  module.exports = {    
-    pfx: pfxProd,
-    agent: new apnagent.Agent()
+    pfx: pfxProd
+    // agent: new apnagent.Agent()
 }
 
 
