@@ -26,7 +26,7 @@ var apnagent = require('apnagent')
   , agent = module.exports = new apnagent.Agent();
 
  module.exports = {    
-    pfx: pfxProd
+    pfx: pfx
     // agent: new apnagent.Agent()
 }
 
@@ -41,9 +41,9 @@ var async = require('async')
  */
 
 agent
-  .set('pfx file', pfxProd)  
+  .set('pfx file', pfx)  
   .set("passphrase", process.env.CERT_PASS)
-  .enable('production');
+  .enable('sandbox');
 
 /*!
  * Error Mitigation
@@ -100,7 +100,7 @@ agent.connect(function (err) {
   }
 
   // it worked!
-  var env = agent.enabled('production')
+  var env = agent.enabled('sandbox')
     ? 'sandbox'
     : 'production';
 
