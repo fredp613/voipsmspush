@@ -16,7 +16,7 @@ process.env.DEBUG = process.env.DEBUG
 
  
 var join = require('path').join
-  , pfx = join(__dirname, '../certs/voipsms.p12'), pfxProd = join(__dirname, '../certs/voipsmsprod.p12');
+  , pfx = join(__dirname, '../certs/voipsms.p12'), pfxProd = join(__dirname, '../certs/voipsmsprod.p12')
 
 /*!
  * Create a new gateway agent
@@ -27,7 +27,7 @@ var apnagent = require('apnagent')
 
  module.exports = {    
     pfx: pfxProd,
-    agent: new apnagent.Agent();
+    agent: new apnagent.Agent()
 }
 
 
