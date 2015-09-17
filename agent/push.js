@@ -73,35 +73,36 @@ function PushLoop() {};
 						  					 if (!doc || doc == null) {
 						  					 	  console.log("new message")
 
-						  					 								message.save(function(e) {
-						  					 									console.log("message saved")
-						  					 									if (e) {
-						  					 										console.log("there is an error")
-						  					 										console.log(e)
-						  					 									} else {
-						  					 										console.log("there isnt an error")
-						  					 										 agent.createMessage()			  	 
-																					  .device(message.device_token)
-																					  .alert(message.message)
-																					  .set('contact', message.contact)
-																					  .set('did', message.did)
-																					  .set('id', message.message_id)
-																					  .set('date', message.date)
-																					  .set('message', message.message)					  
-																						.send(function(e) {
-																							console.log("message working")
-																						  	if (e) {
-																						  		console.log("there is a push error")
-																						  		console.log(e)
-																						  	} else {
-																						  		console.log("there is no push error")
-																						  		console.log("message sent")
-																						  	}
+	  					 								message.save(function(e) {
+	  					 									console.log("message saved")
+	  					 									if (e) {
+	  					 										console.log("there is an error")
+	  					 										console.log(e)
+	  					 									} else {
+	  					 										console.log("there isnt an error")
+	  					 										console.log("agent instantiated:" + agent)
+	  					 										agent.createMessage()			  	 
+																  .device(message.device_token)
+																  .alert(message.message)
+																  .set('contact', message.contact)
+																  .set('did', message.did)
+																  .set('id', message.message_id)
+																  .set('date', message.date)
+																  .set('message', message.message)					  
+																	.send(function(e) {
+																		console.log("message working")
+																	  	if (e) {
+																	  		console.log("there is a push error")
+																	  		console.log(e)
+																	  	} else {
+																	  		console.log("there is no push error")
+																	  		console.log("message sent")
+																	  	}
 
-																						  });	
-																						console.log("ok at end of message")
-						  					 									}
-						  					 								})											  																									  									  
+																	  });	
+																	console.log("ok at end of message")
+	  					 									}
+	  					 								})											  																									  									  
 												  	}					  			  																													  			
 									  		});	
 										});				  		
