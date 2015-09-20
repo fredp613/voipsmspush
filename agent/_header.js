@@ -22,11 +22,13 @@ var S3_BUCKET = process.env.S3_BUCKET
 
 
 var s3 = new aws.S3();
-var s3_params = {
-    Bucket: S3_BUCKET,        
-    Expires: 60,    
-    ACL: 'public-read'
-};
+ var s3_params = {
+        Bucket: S3_BUCKET,
+        Key: null,
+        Expires: 60,
+        ContentType: null,
+        ACL: 'public-read'
+    };
 
 
 var bucket = new aws.S3(s3_params);
