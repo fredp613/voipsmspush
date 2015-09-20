@@ -14,6 +14,23 @@ process.env.DEBUG = process.env.DEBUG
  * Locate your certificate
  */
 
+var aws = require('aws-sdk');
+
+var AWS_ACCESS_KEY = process.env.AWS_ACCESS_KEY;
+var AWS_SECRET_KEY = process.env.AWS_SECRET_KEY;
+var S3_BUCKET = process.env.S3_BUCKET
+
+var bucket = new aws.S3({params: {Bucket: 'apns-certs'}});
+  bucket.listObjects(function (err, data) {
+    if (err) {
+      console.log(err)
+    } else {     
+      for (var i = 0; i < data.Contents.length; i++) {
+        console.log(data.Contents[i].key)
+      }
+    }
+  });
+
  
 var join = require('path').join
   , pfx = join(__dirname, '../certs/voipsms.p12'), pfxProd = join(__dirname, '../certs/voipsmsprod.p12')
