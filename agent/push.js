@@ -35,12 +35,11 @@ console.log("erasfasdfsdf is %d", notification);
 var options = {
     cert: join(process.env.PWD, '/certs/aps-production.pem'),                 /* Certificate file path */                       
     certData: null,
-    key:  join(process.env.PWD, '/certs/key-production.pem'),                  /* Key file path */    
-    production: true,
+    key:  join(process.env.PWD, '/certs/key-production.pem'),                  /* Key file path */        
     keyData: null,    
     passphrase: null,    
     ca: null,
-    gateway: 'gateway.sandbox.push.apple.com',
+    gateway: 'gateway.push.apple.com',
     port: 2195,
     enhanced: true,
     errorCallback: callback,
