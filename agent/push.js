@@ -133,7 +133,7 @@ function PushLoop() {};
 
 	  					 								// 	}
 	  					 										console.log("there is no error")
-	  					 										var sanitizedMessage = message.message.toString()
+	  					 										var sanitizedMessage = message.message.toString('utf-8')
 
 	  					 										var payload = {
 	  					 											"contact" : message.contact,
