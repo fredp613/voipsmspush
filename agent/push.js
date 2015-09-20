@@ -13,18 +13,15 @@ var apns = require('apn');
 // var root = process.cwd();
 
 // var fs = require('fs');
+var join = require('path').join
 
 var options = {
-    cert: '../certs/aps_development.pem',                 /* Certificate file path */
-    certData: null,                   /* String or Buffer containing certificate data, if supplied uses this instead of cert file path */
-    key: '../certs/key-development.pem',                  /* Key file path */
-    keyData: null,                    /* String or Buffer containing key data, as certData */
-    passphrase: process.env.CERT_PASS,                 /* A passphrase for the Key file */
-    ca: null,                         /* String or Buffer of CA data to use for the TLS connection */
+    cert: join(__dirname, '../certs/aps_development.pem'),                 /* Certificate file path */                       
+    key: join(__dirname, '../certs/key-development.pem'),                  /* Key file path */    
+    passphrase: process.env.CERT_PASS,    
     gateway: 'gateway.sandbox.push.apple.com',/* gateway address */
     port: 2195,                       /* gateway port */
-    enhanced: true,                   /* enable enhanced format */
-    errorCallback: undefined,         /* Callback when error occurs function(err,notification) */
+    enhanced: true,                   /* enable enhanced format */    
     cacheLength: 100                  /* Number of notifications to cache for error purposes */
 };
 
