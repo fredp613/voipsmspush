@@ -14,35 +14,35 @@ process.env.DEBUG = process.env.DEBUG
  * Locate your certificate
  */
 
-var aws = require('aws-sdk');
+// var aws = require('aws-sdk');
 
-var AWS_ACCESS_KEY = process.env.AWS_ACCESS_KEY;
-var AWS_SECRET_KEY = process.env.AWS_SECRET_KEY;
-var S3_BUCKET = process.env.S3_BUCKET;
-
-
-var s3 = new aws.S3();
- var s3_params = {
-        Bucket: S3_BUCKET,
-        Key: null,
-        Expires: 60,
-        ContentType: null,
-        ACL: 'public-read'
-    };
+// var AWS_ACCESS_KEY = process.env.AWS_ACCESS_KEY;
+// var AWS_SECRET_KEY = process.env.AWS_SECRET_KEY;
+// var S3_BUCKET = process.env.S3_BUCKET;
 
 
-var bucket = new aws.S3(s3_params);
+// var s3 = new aws.S3();
+//  var s3_params = {
+//         Bucket: S3_BUCKET,
+//         Key: null,
+//         Expires: 60,
+//         ContentType: null,
+//         ACL: 'public-read'
+//     };
 
 
-  bucket.listObjects(function (err, data) {
-    if (err) {
-      console.log(err)
-    } else {     
-      for (var i = 0; i < data.Contents.length; i++) {
-        console.log(data.Contents[i].key)
-      }
-    }
-  });
+// var bucket = new aws.S3(s3_params);
+
+
+//   bucket.listObjects(function (err, data) {
+//     if (err) {
+//       console.log(err)
+//     } else {     
+//       for (var i = 0; i < data.Contents.length; i++) {
+//         console.log(data.Contents[i].key)
+//       }
+//     }
+//   });
 
  
 var join = require('path').join
