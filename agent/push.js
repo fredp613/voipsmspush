@@ -27,6 +27,8 @@ var options = {
     cacheLength: 100                  /* Number of notifications to cache for error purposes */
 };
 
+console.log(options)
+
 var apnsConnection = new apns.Connection(options, function(e) {
 	console.log(e)
 });
