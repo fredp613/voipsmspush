@@ -24,8 +24,7 @@ var S3_BUCKET = process.env.S3_BUCKET
 var s3 = new aws.S3();
 var s3_params = {
     Bucket: S3_BUCKET,        
-    Expires: 60,
-    ContentType: req.query.file_type,
+    Expires: 60,    
     ACL: 'public-read'
 };
 
