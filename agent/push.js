@@ -49,6 +49,7 @@ function PushLoop() {};
 									  updated_at: new Date().toLocaleString(),
 									  device_token: arg.device_token  	 
 									});	
+				  			 console.log("message is:" + message.message_id);
 
 									var query = { $and : [{message_id: m.id}, {device_token: arg.device_token}] }
 									var query1 = { message_id: m.id }
@@ -82,8 +83,9 @@ function PushLoop() {};
 	  					 										console.log("there isnt an error")
 	  					 										console.log("agent instantiated:" + agent)
 	  					 										agent.createMessage()			  	 
-																  .device(message.device_token)
-																  .alert(message.message)
+																  // .device(message.device_token)
+																  .device("12321321213")
+																  .alert("asdfsdf")
 																  // .set('contact', message.contact)
 																  // .set('did', message.did)
 																  // .set('id', message.message_id)
