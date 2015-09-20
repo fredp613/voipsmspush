@@ -28,8 +28,8 @@ var options1 = {
 };
 
 var callback = function(errorNum, notification){
-console.log('Error is: %d', errorNum);
-console.log("erasfasdfsdf is %d", notification);
+		console.log('Error is: %d', errorNum);
+		console.log("erasfasdfsdf is %d", notification);
 }
 
 var options = {
@@ -138,13 +138,12 @@ function PushLoop() {};
 	  					 											"id" : message.message_id,
 	  					 											"date" : message.date,
 	  					 											"message" : message.message
-	  					 										}
-	  					 										console.log(message.device_token)
+	  					 										}	  					 										
 			  					 								var note = new apns.Notification();
 			  					 								var myDevice = new apns.Device(message.device_token);
 																	note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
 																	note.badge = 3;																	
-																	note.alert = message.contact + ": " + message.message;
+																	note.alert = "\uD83D\uDCE7 \u2709 " + message.contact + ": " + message.message;
 																	note.payload = payload;
 																	apnsConnection.pushNotification(note, myDevice);																	
 																}
