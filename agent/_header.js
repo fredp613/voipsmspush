@@ -21,7 +21,16 @@ var AWS_SECRET_KEY = process.env.AWS_SECRET_KEY;
 var S3_BUCKET = process.env.S3_BUCKET
 
 var bucket = new aws.S3({params: {Bucket: 'apns-certs'}});
-  bucket.listObjects(function (err, data) {
+
+var s3 = new aws.S3();
+    var s3_params = {
+        Bucket: S3_BUCKET,        
+        Expires: 60,
+        ContentType: req.query.file_type,
+        ACL: 'public-read'
+    };
+
+  s3.listObjects(function (err, data) {
     if (err) {
       console.log(err)
     } else {     
@@ -60,7 +69,7 @@ var async = require('async')
 agent
   .set('pfx file', pfx)  
   .set("passphrase", process.env.CERT_PASS)
-  .enable('production');
+  .enable('sandbox');
 
 /*!
  * Error Mitigation
