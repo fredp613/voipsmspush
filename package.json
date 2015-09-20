@@ -11,7 +11,8 @@
     "async": "1.4.0",
     "aws-sdk": "2.2.3",
     "apn": "1.7.4",
-    "debug": "2.2.0"    
+    "debug": "2.2.0",
+    "validator": "4.0.6"    
   },
   "engines": {
     "node": "0.12.x",

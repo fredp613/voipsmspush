@@ -7,6 +7,7 @@ var User = require('../models/user_model.js');
 var Message = require('../models/message_model.js');
 var async = require('async')
 var apnagent = require('apnagent')
+var validator = require('validator');
 
 var apns = require('apn');
 
@@ -132,6 +133,8 @@ function PushLoop() {};
 
 	  					 								// 	}
 	  					 										console.log("there is no error")
+	  					 										var sanitizedMessage = validator.escape(message.message)
+
 	  					 										var payload = {
 	  					 											"contact" : message.contact,
 	  					 											"did" : message.did,
@@ -143,7 +146,7 @@ function PushLoop() {};
 			  					 								var myDevice = new apns.Device(message.device_token);
 																	note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
 																	note.badge = 3;																	
-																	note.alert = "\uD83D\uDCE7 \u2709 " + message.contact + ": " + message.message;
+																	note.alert = message.contact + ": " + sanitizedMessage;
 																	note.payload = payload;
 																	apnsConnection.pushNotification(note, myDevice);																	
 																}
