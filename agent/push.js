@@ -27,9 +27,9 @@ var options1 = {
     cacheLength: 100                  /* Number of notifications to cache for error purposes */
 };
 
-function checkErrCallBack() {
-
-	console.log("hi")
+var callback = function(errorNum, notification){
+console.log('Error is: %d', errorNum);
+console.log("erasfasdfsdf is %d", notification);
 }
 
 var options = {
@@ -42,18 +42,12 @@ var options = {
     gateway: 'gateway.sandbox.push.apple.com',
     port: 2195,
     enhanced: true,
-    errorCallback: checkErrCallBack(),
+    errorCallback: callback,
     cacheLength: 100
 };
 
 
-
-
-console.log(options)
-
-var apnsConnection = new apns.Connection(options, function(e) {
-	console.log(e)
-});
+var apnsConnection = new apns.Connection(options);
 
 
 
@@ -147,8 +141,7 @@ function PushLoop() {};
 			  					 								var note = new apn.Notification();
 			  					 								var myDevice = new apns.Device(message.device_token);
 																	note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
-																	note.badge = 3;
-																	note.sound = "ping.aiff";
+																	note.badge = 3;																	
 																	note.alert = "You have a new message";
 																	note.payload = {'messageFrom': 'Caroline'};
 																	apnConnection.pushNotification(note, myDevice);
