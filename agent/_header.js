@@ -48,6 +48,8 @@ var bucket = new aws.S3(s3_params);
 var join = require('path').join
   , pfx = join(__dirname, '../certs/voipsms.p12'), pfxProd = join(__dirname, '../certs/voipsmsprod.p12')
 
+console.log(pfx)
+
 /*!
  * Create a new gateway agent
  */
