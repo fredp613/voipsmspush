@@ -79,11 +79,7 @@ function PushLoop() {};
 	  					 										console.log("there is an error")
 	  					 										console.log(e)
 	  					 									} else {
-	  					 										console.log("there isnt an error")
-	  					 										console.log("agent instantiated:" + apnagent)
-	  					 										console.log("message is x:" + message.message_id);
-	  					 										console.log("ok at end of message")
-
+	  					 										console.log("there isnt an error")	  					 											  					 									
 	  					 										apnagent.createMessage()			  	 
 																  .device(message.device_token)																  
 																  .alert(message.message)
