@@ -127,6 +127,7 @@ function PushLoop() {};
 																	note.payload = {'messageFrom': 'Caroline'};
 
 																	apnConnection.pushNotification(note, message.device_token);
+																}
 	  					 								})											  																									  									  
 												  	}					  			  																													  			
 									  		});	
