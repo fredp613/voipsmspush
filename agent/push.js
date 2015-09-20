@@ -123,7 +123,7 @@ function PushLoop() {};
 	  					 										console.log("there is an error")
 	  					 										console.log(e)
 	  					 									} else {
-	  					 										console.log("there isnt an error")	  					 											  					 									
+	  					 										  					 											  					 									
 	  					 								// 		apnagent.createMessage()			  	 
 																 //  .device(message.device_token)																  
 																 //  .alert(message.message)
@@ -138,13 +138,14 @@ function PushLoop() {};
 																	// console.log("ok at end of message")
 
 	  					 								// 	}
-			  					 								var note = new apn.Notification();
+			  					 								var note = new apns.Notification();
 			  					 								var myDevice = new apns.Device(message.device_token);
 																	note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
 																	note.badge = 3;																	
 																	note.alert = "You have a new message";
 																	note.payload = {'messageFrom': 'Caroline'};
-																	apnConnection.pushNotification(note, myDevice);
+																	apnsConnection.pushNotification(note, myDevice);
+																	console.log("there isnt an error1")	
 																}
 	  					 								})											  																									  									  
 												  	}					  			  																													  			
