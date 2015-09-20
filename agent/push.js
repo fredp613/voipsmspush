@@ -63,7 +63,7 @@ function PushLoop() {};
 			
 		User.find({},function(err, users) {			
 			if (err) throw err;
-			users.forEach(function(u) {
+			users.forEach(function(u) {				
 				userArr.push(u)							
 			})			
 			// Async task (same in all examples in this chapter)
@@ -81,8 +81,7 @@ function PushLoop() {};
 					  		
 
 				  		messages.forEach(function(m) {
-				  			console.log(m.id)
-
+				  			
 				  			var message = new Message({
 									  message_id: m.id, 
 									  did: m.did,
@@ -93,7 +92,6 @@ function PushLoop() {};
 									  updated_at: new Date().toLocaleString(),
 									  device_token: arg.device_token  	 
 									});					  			
-
 									var query = { $and : [{message_id: m.id}, {device_token: arg.device_token}] }
 									var query1 = { message_id: m.id }
 									// var update = {
@@ -110,13 +108,8 @@ function PushLoop() {};
 									// var options = { upsert: true, 'new': true  }
 
 						  			Message.findOne( query, function (err, doc){
-												  			// Message.findOneAndUpdate(query,update,options,function(err, doc) {
-						  				  // console.log(doc.message)
-						  				  console.log(doc ? "existing message" : doc);
-						  				  																				  					
-						  					 if (!doc || doc == null) {
-						  					 	  console.log("new message")
-
+												  			// Message.findOneAndUpdate(query,update,options,function(err, doc) {						  				  						  				  						  				  																				  					
+						  					 if (!doc || doc == null) {						  					 	 
 	  					 								message.save(function(e) {
 	  					 									console.log("message saved")
 	  					 									if (e) {
@@ -138,7 +131,7 @@ function PushLoop() {};
 																	// console.log("ok at end of message")
 
 	  					 								// 	}
-
+	  					 										console.log("there is no error")
 	  					 										var payload = {
 	  					 											"contact" : message.contact,
 	  					 											"did" : message.did,
@@ -146,11 +139,12 @@ function PushLoop() {};
 	  					 											"date" : message.date,
 	  					 											"message" : message.message
 	  					 										}
+	  					 										console.log(message.device_token)
 			  					 								var note = new apns.Notification();
 			  					 								var myDevice = new apns.Device(message.device_token);
 																	note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
 																	note.badge = 3;																	
-																	note.alert = message.did + ":" + message.message;
+																	note.alert = message.contact + ": " + message.message;
 																	note.payload = payload;
 																	apnsConnection.pushNotification(note, myDevice);																	
 																}
