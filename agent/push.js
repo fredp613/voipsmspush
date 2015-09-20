@@ -27,10 +27,9 @@ var options1 = {
     cacheLength: 100                  /* Number of notifications to cache for error purposes */
 };
 
-function checkErrCallBack(err, notification) {
+function checkErrCallBack() {
 
-	console.log(err)
-	console.log(notification)
+	console.log("hi")
 }
 
 var options = {
@@ -38,12 +37,12 @@ var options = {
     certData: null,
     key:  join(process.env.PWD, '/certs/key-development.pem'),                  /* Key file path */    
     keyData: null,
-    passphrase: process.env.CERT_PASS,    
+    passphrase: null,    
     ca: null,
     gateway: 'gateway.sandbox.push.apple.com',
     port: 2195,
     enhanced: true,
-    errorCallback: checkErrCallBack(err,notification),
+    errorCallback: checkErrCallBack(),
     cacheLength: 100
 };
 
