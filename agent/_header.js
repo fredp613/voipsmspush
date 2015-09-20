@@ -18,7 +18,7 @@ var aws = require('aws-sdk');
 
 var AWS_ACCESS_KEY = process.env.AWS_ACCESS_KEY;
 var AWS_SECRET_KEY = process.env.AWS_SECRET_KEY;
-var S3_BUCKET = process.env.S3_BUCKET
+var S3_BUCKET = process.env.S3_BUCKET;
 
 
 var s3 = new aws.S3();
@@ -49,6 +49,11 @@ var join = require('path').join
   , pfx = join(__dirname, '../certs/voipsms.p12'), pfxProd = join(__dirname, '../certs/voipsmsprod.p12')
 
 console.log(pfx)
+
+ // see error mitigation section
+  agent.on('message:error', function (err, msg) {
+    console.log(err)
+  });
 
 /*!
  * Create a new gateway agent
