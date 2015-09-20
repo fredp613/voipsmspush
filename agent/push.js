@@ -1,7 +1,7 @@
 
 
 var method = PushLoop.prototype;
-var agent = require('./_header')  
+// var agent = require('./_header')  
 var request = require('request');
 var User = require('../models/user_model.js');
 var Message = require('../models/message_model.js');
