@@ -61,7 +61,7 @@ var apnagent = require('apnagent')
 
   // see error mitigation section
   agent.on('message:error', function (err, msg) {
-    console.log(err)
+    console.log("there is an APN agent error:" + err)
   });
 
  module.exports = {    

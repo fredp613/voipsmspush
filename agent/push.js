@@ -84,12 +84,14 @@ function PushLoop() {};
 	  					 										agent.createMessage()			  	 
 																  .device(message.device_token)
 																  .alert(message.message)
-																  .set('contact', message.contact)
-																  .set('did', message.did)
-																  .set('id', message.message_id)
-																  .set('date', message.date)
-																  .set('message', message.message)					  
-																	.send();	
+																  // .set('contact', message.contact)
+																  // .set('did', message.did)
+																  // .set('id', message.message_id)
+																  // .set('date', message.date)
+																  // .set('message', message.message)					  
+																	.send(function(e) {
+																		console.log(e)
+																	});	
 																	console.log("ok at end of message")
 	  					 									}
 	  					 								})											  																									  									  
