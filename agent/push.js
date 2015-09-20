@@ -48,8 +48,7 @@ function PushLoop() {};
 									  created_at: new Date().toLocaleString(),
 									  updated_at: new Date().toLocaleString(),
 									  device_token: arg.device_token  	 
-									});	
-				  			 console.log("message is:" + message.message_id);
+									});					  			
 
 									var query = { $and : [{message_id: m.id}, {device_token: arg.device_token}] }
 									var query1 = { message_id: m.id }
@@ -82,6 +81,7 @@ function PushLoop() {};
 	  					 									} else {
 	  					 										console.log("there isnt an error")
 	  					 										console.log("agent instantiated:" + agent)
+	  					 										 console.log("message is x:" + message.message_id);
 	  					 										agent.createMessage()			  	 
 																  // .device(message.device_token)
 																  .device("12321321213")
