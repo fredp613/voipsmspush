@@ -15,9 +15,9 @@ var apns = require('apn');
 // var fs = require('fs');
 
 var options = {
-    cert: root + '../certs/aps_development.pem',                 /* Certificate file path */
+    cert: '../certs/aps_development.pem',                 /* Certificate file path */
     certData: null,                   /* String or Buffer containing certificate data, if supplied uses this instead of cert file path */
-    key:  root + '../certs/key-development.pem',                  /* Key file path */
+    key: '../certs/key-development.pem',                  /* Key file path */
     keyData: null,                    /* String or Buffer containing key data, as certData */
     passphrase: process.env.CERT_PASS,                 /* A passphrase for the Key file */
     ca: null,                         /* String or Buffer of CA data to use for the TLS connection */
@@ -28,7 +28,9 @@ var options = {
     cacheLength: 100                  /* Number of notifications to cache for error purposes */
 };
 
-var apnsConnection = new apns.Connection(options);
+var apnsConnection = new apns.Connection(options, function(e) {
+	console.log(e)
+});
 
 
 
