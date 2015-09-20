@@ -50,10 +50,7 @@ var join = require('path').join
 
 console.log(pfx)
 
- // see error mitigation section
-  agent.on('message:error', function (err, msg) {
-    console.log(err)
-  });
+ 
 
 /*!
  * Create a new gateway agent
@@ -61,6 +58,11 @@ console.log(pfx)
 
 var apnagent = require('apnagent')
   , agent = module.exports = new apnagent.Agent();
+
+  // see error mitigation section
+  agent.on('message:error', function (err, msg) {
+    console.log(err)
+  });
 
  module.exports = {    
     pfx: pfx
