@@ -6,6 +6,10 @@ var User = require('./models/user_model.js');
 var mongoose = require('mongoose');
 
 
+var debug = require('debug')('apn')
+  , http = require('http')
+  , name = 'my little app';
+
 var connection_string = 'mongodb://localhost/voipapidb';
 
 if (process.env.MONGOLAB_URI) {
