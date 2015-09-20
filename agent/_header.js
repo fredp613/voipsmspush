@@ -62,7 +62,7 @@ var apnagent = require('apnagent')
   // see error mitigation section
   agent.on('message:error', function (err, msg) {
     console.log("there is an APN agent error:" + err)
-  });
+  });ps
 
  module.exports = {    
     pfx: pfx

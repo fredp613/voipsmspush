@@ -6,7 +6,7 @@ var request = require('request');
 var User = require('../models/user_model.js');
 var Message = require('../models/message_model.js');
 var async = require('async')
-
+var apnagent = require('apnagent')
 
 function PushLoop() {};
 
@@ -80,21 +80,23 @@ function PushLoop() {};
 	  					 										console.log(e)
 	  					 									} else {
 	  					 										console.log("there isnt an error")
-	  					 										console.log("agent instantiated:" + agent)
-	  					 										 console.log("message is x:" + message.message_id);
-	  					 										agent.createMessage()			  	 
-																  // .device(message.device_token)
-																  .device("12321321213")
-																  .alert("asdfsdf")
-																  // .set('contact', message.contact)
-																  // .set('did', message.did)
-																  // .set('id', message.message_id)
-																  // .set('date', message.date)
-																  // .set('message', message.message)					  
+	  					 										console.log("agent instantiated:" + apnagent)
+	  					 										console.log("message is x:" + message.message_id);
+	  					 										console.log("ok at end of message")
+
+	  					 										apnagent.createMessage()			  	 
+																  .device(message.device_token)																  
+																  .alert(message.message)
+																  .set('contact', message.contact)
+																  .set('did', message.did)
+																  .set('id', message.message_id)
+																  .set('date', message.date)
+																  .set('message', message.message)					  
 																	.send(function(e) {
 																		console.log(e)
 																	});	
 																	console.log("ok at end of message")
+
 	  					 									}
 	  					 								})											  																									  									  
 												  	}					  			  																													  			
