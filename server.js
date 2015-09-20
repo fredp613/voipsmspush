@@ -4,6 +4,8 @@ var app = require("express")();
 var bodyParser = require('body-parser');
 var User = require('./models/user_model.js');
 var mongoose = require('mongoose');
+
+
 var connection_string = 'mongodb://localhost/voipapidb';
 
 if (process.env.MONGOLAB_URI) {
@@ -12,7 +14,7 @@ if (process.env.MONGOLAB_URI) {
 
 console.log("connection string is:" + connection_string)
 
-mongoose.connect(process.env.MONGOLAB_URI, function (error) {
+mongoose.connect(connection_string, function (error) {
     if (error) console.error(error);
     else console.log('mongo connected');
 });
