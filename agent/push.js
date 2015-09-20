@@ -27,6 +27,12 @@ var options1 = {
     cacheLength: 100                  /* Number of notifications to cache for error purposes */
 };
 
+function checkErrCallBack(err, notification) {
+
+	console.log(err)
+	console.log(notification)
+}
+
 var options = {
     cert: join(process.env.PWD, '/certs/aps_development.pem'),                 /* Certificate file path */                       
     certData: null,
@@ -41,11 +47,7 @@ var options = {
     cacheLength: 100
 };
 
-function checkErrCallBack(err, notification) {
 
-	console.log(err)
-	console.log(notification)
-}
 
 
 console.log(options)
