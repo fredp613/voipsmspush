@@ -20,17 +20,20 @@ var AWS_ACCESS_KEY = process.env.AWS_ACCESS_KEY;
 var AWS_SECRET_KEY = process.env.AWS_SECRET_KEY;
 var S3_BUCKET = process.env.S3_BUCKET
 
-var bucket = new aws.S3({params: {Bucket: 'apns-certs'}});
 
 var s3 = new aws.S3();
-    var s3_params = {
-        Bucket: S3_BUCKET,        
-        Expires: 60,
-        ContentType: req.query.file_type,
-        ACL: 'public-read'
-    };
+var s3_params = {
+    Bucket: S3_BUCKET,        
+    Expires: 60,
+    ContentType: req.query.file_type,
+    ACL: 'public-read'
+};
 
-  s3.listObjects(function (err, data) {
+
+var bucket = new aws.S3(s3_params);
+
+
+  bucket.listObjects(function (err, data) {
     if (err) {
       console.log(err)
     } else {     
