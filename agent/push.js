@@ -36,8 +36,7 @@ var options = {
     cert: join(process.env.PWD, '/certs/aps-production.pem'),                 /* Certificate file path */                       
     certData: null,
     key:  join(process.env.PWD, '/certs/key-production.pem'),                  /* Key file path */    
-    keyData: null,
-    production: true,
+    keyData: null,    
     passphrase: null,    
     ca: null,
     gateway: 'gateway.sandbox.push.apple.com',
