@@ -133,7 +133,7 @@ function PushLoop() {};
 
 	  					 								// 	}
 	  					 										console.log("there is no error")
-	  					 										var sanitizedMessage = validator.escape(message.message)
+	  					 										var sanitizedMessage = message.message.toString()
 
 	  					 										var payload = {
 	  					 											"contact" : message.contact,
