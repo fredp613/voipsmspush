@@ -36,6 +36,7 @@ var options = {
     cert: join(process.env.PWD, '/certs/aps-production.pem'),                 /* Certificate file path */                       
     certData: null,
     key:  join(process.env.PWD, '/certs/key-production.pem'),                  /* Key file path */    
+    production: true,
     keyData: null,    
     passphrase: null,    
     ca: null,
