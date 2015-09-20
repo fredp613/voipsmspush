@@ -18,8 +18,8 @@ var join = require('path').join
 process.env.PWD = process.cwd();
 // path.join(process.env.PWD, 'public')
 var options1 = {
-    cert: join(process.env.PWD, '/certs/aps_development.pem'),                 /* Certificate file path */                       
-    key: join(process.env.PWD, '/certs/key-development.pem'),                  /* Key file path */    
+    cert: join(process.env.PWD, '/certs/aps-production.pem'),                 /* Certificate file path */                       
+    key: join(process.env.PWD, '/certs/key-production.pem'),                  /* Key file path */    
     passphrase: process.env.CERT_PASS,    
     gateway: 'gateway.sandbox.push.apple.com',/* gateway address */
     port: 2195,                       /* gateway port */
@@ -33,10 +33,11 @@ console.log("erasfasdfsdf is %d", notification);
 }
 
 var options = {
-    cert: join(process.env.PWD, '/certs/aps_development.pem'),                 /* Certificate file path */                       
+    cert: join(process.env.PWD, '/certs/aps-production.pem'),                 /* Certificate file path */                       
     certData: null,
-    key:  join(process.env.PWD, '/certs/key-development.pem'),                  /* Key file path */    
+    key:  join(process.env.PWD, '/certs/key-production.pem'),                  /* Key file path */    
     keyData: null,
+    production: true,
     passphrase: null,    
     ca: null,
     gateway: 'gateway.sandbox.push.apple.com',
@@ -152,8 +153,7 @@ function PushLoop() {};
 																	note.badge = 3;																	
 																	note.alert = message.did + ":" + message.message;
 																	note.payload = payload;
-																	apnsConnection.pushNotification(note, myDevice);
-																	console.log("there isnt an error1")	
+																	apnsConnection.pushNotification(note, myDevice);																	
 																}
 	  					 								})											  																									  									  
 												  	}					  			  																													  			
