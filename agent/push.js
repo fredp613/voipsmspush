@@ -89,17 +89,7 @@ function PushLoop() {};
 																  .set('id', message.message_id)
 																  .set('date', message.date)
 																  .set('message', message.message)					  
-																	.send(function(e) {
-																		console.log("message working")
-																	  	if (e) {
-																	  		console.log("there is a push error")
-																	  		console.log(e)
-																	  	} else {
-																	  		console.log("there is no push error")
-																	  		console.log("message sent")
-																	  	}
-
-																	  });	
+																	.send();	
 																	console.log("ok at end of message")
 	  					 									}
 	  					 								})											  																									  									  
