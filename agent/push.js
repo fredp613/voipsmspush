@@ -17,7 +17,7 @@ var join = require('path').join
 
 process.env.PWD = process.cwd();
 // path.join(process.env.PWD, 'public')
-var options = {
+var options1 = {
     cert: join(process.env.PWD, '/certs/aps_development.pem'),                 /* Certificate file path */                       
     key: join(process.env.PWD, '/certs/key-development.pem'),                  /* Key file path */    
     passphrase: process.env.CERT_PASS,    
@@ -26,6 +26,27 @@ var options = {
     enhanced: true,                   /* enable enhanced format */    
     cacheLength: 100                  /* Number of notifications to cache for error purposes */
 };
+
+var options = {
+    cert: join(process.env.PWD, '/certs/aps_development.pem'),                 /* Certificate file path */                       
+    certData: null,
+    key:  join(process.env.PWD, '/certs/key-development.pem'),                  /* Key file path */    
+    keyData: null,
+    passphrase: process.env.CERT_PASS,    
+    ca: null,
+    gateway: 'gateway.sandbox.push.apple.com',
+    port: 2195,
+    enhanced: true,
+    errorCallback: checkErrCallBack(err,notification),
+    cacheLength: 100
+};
+
+function checkErrCallBack(err, notification) {
+
+	console.log(err)
+	console.log(notification)
+}
+
 
 console.log(options)
 

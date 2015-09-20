@@ -1,1 +1,1 @@
-web: DEBUG=apn node server.js
+web: node server.js
