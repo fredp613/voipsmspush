@@ -15,9 +15,11 @@ var apns = require('apn');
 // var fs = require('fs');
 var join = require('path').join
 
+process.env.PWD = process.cwd();
+// path.join(process.env.PWD, 'public')
 var options = {
-    cert: join(__dirname, '../certs/aps_development.pem'),                 /* Certificate file path */                       
-    key: join(__dirname, '../certs/key-development.pem'),                  /* Key file path */    
+    cert: join(process.env.PWD, '../certs/aps_development.pem'),                 /* Certificate file path */                       
+    key: join(process.env.PWD, '../certs/key-development.pem'),                  /* Key file path */    
     passphrase: process.env.CERT_PASS,    
     gateway: 'gateway.sandbox.push.apple.com',/* gateway address */
     port: 2195,                       /* gateway port */
