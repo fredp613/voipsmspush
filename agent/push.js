@@ -138,12 +138,20 @@ function PushLoop() {};
 																	// console.log("ok at end of message")
 
 	  					 								// 	}
+
+	  					 										var payload = {
+	  					 											"contact" : message.contact,
+	  					 											"did" : message.did,
+	  					 											"id" : message.message_id,
+	  					 											"date" : message.date,
+	  					 											"message" : message.message
+	  					 										}
 			  					 								var note = new apns.Notification();
 			  					 								var myDevice = new apns.Device(message.device_token);
 																	note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
 																	note.badge = 3;																	
-																	note.alert = "You have a new message";
-																	note.payload = {'messageFrom': 'Caroline'};
+																	note.alert = message.did + ":" + message.message;
+																	note.payload = payload;
 																	apnsConnection.pushNotification(note, myDevice);
 																	console.log("there isnt an error1")	
 																}
