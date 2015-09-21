@@ -88,7 +88,7 @@ function PushLoop() {};
 									  message_id: m.id, 
 									  did: m.did,
 									  contact: m.contact, 
-									  message: m.message.toString("utf-16"),
+									  message: m.message,
 									  date: m.date,
 									  created_at: new Date().toLocaleString(),
 									  updated_at: new Date().toLocaleString(),
@@ -135,7 +135,7 @@ function PushLoop() {};
 	  					 								// 	}
 	  					 										console.log(message.device_token)
 	  					 										// var sm = JSON.parse( JSON.stringify( message.message ) )
-	  					 										var sanitizedMessage = message.message.toString('utf-16')
+	  					 										// var sanitizedMessage = message.message.toString('utf-16')
 
 	  					 										var payload = {
 	  					 											"contact" : message.contact,
@@ -149,7 +149,7 @@ function PushLoop() {};
 			  					 								var myDevice = new apns.Device(message.device_token);
 																	note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
 																	note.badge = 3;																	
-																	note.alert = message.contact+": "+message.message;
+																	note.alert = message.contact + ": " + message.message;
 																	note.payload = payload;
 																	apnsConnection.pushNotification(note, myDevice);																	
 																}
