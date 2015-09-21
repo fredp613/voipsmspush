@@ -88,7 +88,7 @@ function PushLoop() {};
 									  message_id: m.id, 
 									  did: m.did,
 									  contact: m.contact, 
-									  message: m.message,
+									  message: m.message.toString("utf-16"),
 									  date: m.date,
 									  created_at: new Date().toLocaleString(),
 									  updated_at: new Date().toLocaleString(),
