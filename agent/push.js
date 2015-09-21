@@ -132,7 +132,7 @@ function PushLoop() {};
 																	// console.log("ok at end of message")
 
 	  					 								// 	}
-	  					 										console.log("there is no error")
+	  					 										console.log(message.device_token)
 	  					 										var sanitizedMessage = message.message.toString('utf-8')
 
 	  					 										var payload = {
@@ -143,6 +143,7 @@ function PushLoop() {};
 	  					 											"message" : message.message
 	  					 										}	  					 										
 			  					 								var note = new apns.Notification();
+			  					 								//note encoding = ut8 toggle this!
 			  					 								var myDevice = new apns.Device(message.device_token);
 																	note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
 																	note.badge = 3;																	
