@@ -134,6 +134,7 @@ function PushLoop() {};
 
 	  					 								// 	}
 	  					 										console.log(message.device_token)
+	  					 										var sm = JSON.parse( JSON.stringify( message.message ) )
 	  					 										var sanitizedMessage = message.message.toString('utf-16')
 
 	  					 										var payload = {
@@ -148,7 +149,7 @@ function PushLoop() {};
 			  					 								var myDevice = new apns.Device(message.device_token);
 																	note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
 																	note.badge = 3;																	
-																	note.alert = "\uD83D\uDCE7"+message.contact+": "+sanitizedMessage+"";
+																	note.alert = sm; //"\uD83D\uDCE7"+message.contact+": "+sanitizedMessage+"";
 																	note.payload = payload;
 																	apnsConnection.pushNotification(note, myDevice);																	
 																}
