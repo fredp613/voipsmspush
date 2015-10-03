@@ -67,11 +67,9 @@ function PushLoop() {};
 			if (err) throw err;
 			users.forEach(function(u) {				
 				userArr.push(u)							
-			})			
-			// Async task (same in all examples in this chapter)
+			})						
 			function async(arg, callback) {
-			  // console.log('do something with \''+arg.device_token+'\', return 1 sec later');
-
+			  
 			  	var url = "https://voip.ms/api/v1/rest.php?api_username="+ arg.email +"&api_password="+ arg.password +"&method=getSMS&type=1&limit=5"					 					
 					
 					request.get(url, {timeout: 30000}, function(err, response, body){ 
@@ -96,21 +94,10 @@ function PushLoop() {};
 									});					  			
 									var query = { $and : [{message_id: m.id}, {device_token: arg.device_token}] }
 									var query1 = { message_id: m.id }
-									// var update = {
-									// 	message_id: message.id, 
-									//   did: message.did,
-									//   contact: message.contact, 
-									//   message: message.message,
-									//   date: message.date,
-									//   created_at: new Date().toLocaleString(),
-									//   updated_at: new Date().toLocaleString(),
-									//   device_token: arg.device_token 
-									// }
-									// var update = {$set: message.toObject()}
-									// var options = { upsert: true, 'new': true  }
+
 
 						  			Message.findOne( query, function (err, doc){
-												  			// Message.findOneAndUpdate(query,update,options,function(err, doc) {						  				  						  				  						  				  																				  					
+
 						  					 if (!doc || doc == null) {						  					 	 
 	  					 								message.save(function(e) {
 	  					 									console.log("message saved")
@@ -118,24 +105,8 @@ function PushLoop() {};
 	  					 										console.log("there is an error")
 	  					 										console.log(e)
 	  					 									} else {
-	  					 										  					 											  					 									
-	  					 								// 		apnagent.createMessage()			  	 
-																 //  .device(message.device_token)																  
-																 //  .alert(message.message)
-																 //  .set('contact', message.contact)
-																 //  .set('did', message.did)
-																 //  .set('id', message.message_id)
-																 //  .set('date', message.date)
-																 //  .set('message', message.message)					  
-																	// .send(function(e) {
-																	// 	console.log(e)
-																	// });	
-																	// console.log("ok at end of message")
-
-	  					 								// 	}
+	  					 										  					 											  					 										  					 							
 	  					 										console.log(message.device_token)
-	  					 										// var sm = JSON.parse( JSON.stringify( message.message ) )
-	  					 										// var sanitizedMessage = message.message.toString('utf-16')
 
 	  					 										var payload = {
 	  					 											"contact" : message.contact,
@@ -145,7 +116,6 @@ function PushLoop() {};
 	  					 											"message" : message.message
 	  					 										}	  					 										
 			  					 								var note = new apns.Notification();
-			  					 								//note encoding = ut8 toggle this!
 			  					 								var myDevice = new apns.Device(message.device_token);
 																	note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
 																	note.badge = 3;																	
@@ -182,8 +152,6 @@ function PushLoop() {};
 			function final() { 
 				console.log('Done'); 
 				startLoop();
-				// var pushLoop = new PushLoop();
-				// process.nextTick(pushLoop.go())
 			}
 
 			series(userArr.shift())
