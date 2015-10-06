@@ -113,7 +113,7 @@ function PushLoop() {};
 	  					 											"did" : message.did,
 	  					 											"id" : message.message_id,
 	  					 											"date" : message.date,
-	  					 											"message" : JSON.stringify(message.message)
+	  					 											"message" : JSON.stringify(message.message).replace(/'/g, "\\'")
 	  					 										}	  					 										
 			  					 								var note = new apns.Notification();
 			  					 								var myDevice = new apns.Device(message.device_token);
