@@ -120,7 +120,7 @@ function PushLoop() {};
 																	note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
 																	note.badge = 3;																	
 																	note.alert = message.contact + ": " + message.message;
-																	note.payload = JSON.stringify(payload);
+																	note.payload = payload;
 																	apnsConnection.pushNotification(note, myDevice);																	
 																}
 	  					 								})											  																									  									  
