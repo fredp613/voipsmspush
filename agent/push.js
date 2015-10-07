@@ -118,7 +118,7 @@ function PushLoop() {};
 	  					 											"message" : message.message.replace("'", "\'")
 	  					 										}	  
 
-	  					 										var clean = message.message.toString().replace("'", "\'")	
+	  					 										var clean = message.message.toString().replace("\'", "\'")	
 	  					 												 										
 			  					 								var note = new apns.Notification();
 			  					 								var myDevice = new apns.Device(message.device_token);
