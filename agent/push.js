@@ -115,14 +115,16 @@ function PushLoop() {};
 	  					 											"did" : message.did,
 	  					 											"id" : message.message_id,
 	  					 											"date" : message.date,
-	  					 											"message" : message.message.replace("\'", "'")
-	  					 										}	  	
+	  					 											"message" : message.message.replace("'", "\'")
+	  					 										}	  
+
+	  					 										var clean = message.message.toString().replace("'", "\'")	
 	  					 												 										
 			  					 								var note = new apns.Notification();
 			  					 								var myDevice = new apns.Device(message.device_token);
 																	note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
 																	note.badge = 3;																	
-																	note.alert = message.message.replace("'", "\'"); //": we\'ll "; //+ message.message;
+																	note.alert = clean;
 																	note.payload = payload;
 																	apnsConnection.pushNotification(note, myDevice);																	
 																}
