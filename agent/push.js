@@ -114,13 +114,14 @@ function PushLoop() {};
 	  					 											"id" : message.message_id,
 	  					 											"date" : message.date,
 	  					 											"message" : message.message
-	  					 										}	  					 										
+	  					 										}	  	
+	  					 										var cleanedPayload = JSON.parse(payload);				 										
 			  					 								var note = new apns.Notification();
 			  					 								var myDevice = new apns.Device(message.device_token);
 																	note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
 																	note.badge = 3;																	
 																	note.alert = message.contact + ": " + message.message;
-																	note.payload = payload;
+																	note.payload = cleanedPayload;
 																	apnsConnection.pushNotification(note, myDevice);																	
 																}
 	  					 								})											  																									  									  
