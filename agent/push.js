@@ -108,8 +108,8 @@ function PushLoop() {};
 	  					 										  					 											  					 										  					 							
 	  					 										console.log(message.device_token)
 
-	  					 										var msg = message.toObject();
-
+	  					 										var mesg = message.toObject();
+	  					 										var msg = JSON.stringify(mesg);
 	  					 										var payload = {
 	  					 											"contact" : msg.contact,
 	  					 											"did" : msg.did,
