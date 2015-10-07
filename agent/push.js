@@ -115,7 +115,7 @@ function PushLoop() {};
 	  					 											"did" : message.did,
 	  					 											"id" : message.message_id,
 	  					 											"date" : message.date,
-	  					 											"message" : message.message.replace("\'", "'");
+	  					 											"message" : message.message.replace("\'", "'")
 	  					 										}	  	
 	  					 												 										
 			  					 								var note = new apns.Notification();
