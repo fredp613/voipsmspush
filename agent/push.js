@@ -115,14 +115,11 @@ function PushLoop() {};
 																		"did" : message.did,
 																		"id" : message.message_id,
 																		"date" : message.date,
-																		"message" : message.message.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&") //message.message.replace("'", "\'")
+																		"message" : message.message.toString().replace(/\\/g,"");
 																	}	  
 
-																	var clean = message.message.toString().replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
-																	var clean2 = message.message.replace("\u2019", "'");
-																	var clean3 = message.message.replace("'", "\u2019");
-																	var clean4 = "we'll" //.replace("'", "\\'");
-																	var clean5 = message.message.toString().replace(/\\'/g,"'");
+																	var clean = message.message.toString().replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");																																		
+																	var clean5 = message.message.toString().replace(/\\/g,"");
 																	console.log(clean2)
 																	console.log(clean3)
 																	console.log(clean5)
