@@ -124,13 +124,13 @@ function PushLoop() {};
 																	var clean4 = "we'll".replace("'", "\\'");
 																	console.log(clean2)
 																	console.log(clean3)
-																	console.log(clean4)
+																	console.log(JSON.stringify(clean4))
 																			 										
 																	var note = new apns.Notification();
 																	var myDevice = new apns.Device(message.device_token);
 																note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
 																note.badge = 3;																	
-																note.alert = JSON.parse(clean4);
+																note.alert = clean4;
 																note.payload = payload;
 																apnsConnection.pushNotification(note, myDevice);																	
 															}
