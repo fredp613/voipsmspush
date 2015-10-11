@@ -122,7 +122,7 @@ function PushLoop() {};
 																	var clean2 = message.message.replace("\u2019", "'");
 																	var clean3 = message.message.replace("'", "\u2019");
 																	var clean4 = "we'll" //.replace("'", "\\'");
-																	var clean5 = message.message.toString().replace(/\'/g,"asdf");
+																	var clean5 = message.message.toString().replace(/\\'/g,"asdf");
 																	console.log(clean2)
 																	console.log(clean3)
 																	console.log(clean5)
