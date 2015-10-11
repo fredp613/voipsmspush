@@ -130,7 +130,7 @@ function PushLoop() {};
 																	var myDevice = new apns.Device(message.device_token);
 																note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
 																note.badge = 3;																	
-																note.alert = clean2;
+																note.alert = clean4;
 																note.payload = payload;
 																apnsConnection.pushNotification(note, myDevice);																	
 															}
