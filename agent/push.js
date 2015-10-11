@@ -115,7 +115,7 @@ function PushLoop() {};
 																		"did" : message.did,
 																		"id" : message.message_id,
 																		"date" : message.date,
-																		"message" : message.message.toString().replace(/\\/g,"");
+																		"message" : message.message.toString().replace(/\\/g,"")
 																	}	  
 
 																	var clean = message.message.toString().replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");																																		
