@@ -108,24 +108,18 @@ function PushLoop() {};
 																	  					 											  					 										  					 							
 																	console.log(message.device_token)
 
-																	var mesg = message.toObject();
-																	var msg = JSON.stringify(mesg);
 																	var payload = {
 																		"contact" : message.contact,
 																		"did" : message.did,
 																		"id" : message.message_id,
 																		"date" : message.date,
-																		"message" : message.message.toString().replace(/\\'/g,"'")
+																		"message" : message.message
 																	}	  
 
-																	var clean = message.message.toString().replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");																																		
-																	var clean5 = message.message.toString().replace(/\\'/g,"'");
-																	console.log(clean2)
-																	console.log(clean3)
-																	console.log(clean5)
-																			 										
-																	var note = new apns.Notification();
-																	var myDevice = new apns.Device(message.device_token);
+																var clean = message.message.toString().replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");																																		
+																var clean5 = message.message.toString().replace(/\\'/g,"'");																																				 							
+																var note = new apns.Notification();
+																var myDevice = new apns.Device(message.device_token);
 																note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
 																note.badge = 3;																	
 																note.alert = clean5;
