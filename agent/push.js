@@ -96,42 +96,43 @@ function PushLoop() {};
 									var query1 = { message_id: m.id }
 
 
-						  			Message.findOne(query).lean().exec(function (err, doc){
+									Message.findOne(query).lean().exec(function (err, doc){
 
-						  					 if (!doc || doc == null) {						  					 	 
-	  					 								message.save(function(e) {
-	  					 									console.log("message saved")
-	  					 									if (e) {
-	  					 										console.log("there is an error")
-	  					 										console.log(e)
-	  					 									} else {
-	  					 										  					 											  					 										  					 							
-	  					 										console.log(message.device_token)
+											 if (!doc || doc == null) {						  					 	 
+															message.save(function(e) {
+																console.log("message saved")
+																if (e) {
+																	console.log("there is an error")
+																	console.log(e)
+																} else {
+																	  					 											  					 										  					 							
+																	console.log(message.device_token)
 
-	  					 										var mesg = message.toObject();
-	  					 										var msg = JSON.stringify(mesg);
-	  					 										var payload = {
-	  					 											"contact" : message.contact,
-	  					 											"did" : message.did,
-	  					 											"id" : message.message_id,
-	  					 											"date" : message.date,
-	  					 											"message" : message.message.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&") //message.message.replace("'", "\'")
-	  					 										}	  
+																	var mesg = message.toObject();
+																	var msg = JSON.stringify(mesg);
+																	var payload = {
+																		"contact" : message.contact,
+																		"did" : message.did,
+																		"id" : message.message_id,
+																		"date" : message.date,
+																		"message" : message.message.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&") //message.message.replace("'", "\'")
+																	}	  
 
-	  					 										var clean = message.message.toString().replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
-	  					 												 										
-			  					 								var note = new apns.Notification();
-			  					 								var myDevice = new apns.Device(message.device_token);
-																	note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
-																	note.badge = 3;																	
-																	note.alert = clean;
-																	note.payload = payload;
-																	apnsConnection.pushNotification(note, myDevice);																	
-																}
-	  					 								})											  																									  									  
-												  	}					  			  																													  			
-									  		});	
-										});				  		
+																	var clean = message.message.toString().replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+																	var clean2 = message.message.replace("'", "\u2019");
+																			 										
+																	var note = new apns.Notification();
+																	var myDevice = new apns.Device(message.device_token);
+																note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
+																note.badge = 3;																	
+																note.alert = clean2;
+																note.payload = payload;
+																apnsConnection.pushNotification(note, myDevice);																	
+															}
+															})											  																									  									  
+											  	}					  			  																													  			
+											});	
+									});				  		
 					  	}
 						  else {
 						  	console.log(err)
