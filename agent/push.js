@@ -117,7 +117,7 @@ function PushLoop() {};
 																	}	  
 
 																var clean = message.message.toString().replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");																																		
-																var clean5 = message.message.toString().replace(/\\'/g,"'");																																				 							
+																var clean5 = message.message.toString().replace(/\\/g,"");																																				 							
 																var note = new apns.Notification();
 																var myDevice = new apns.Device(message.device_token);
 																note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
