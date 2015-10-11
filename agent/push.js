@@ -115,11 +115,11 @@ function PushLoop() {};
 																		"did" : message.did,
 																		"id" : message.message_id,
 																		"date" : message.date,
-																		"message" : message.message.toString().replace(/\\/g,"")
+																		"message" : message.message.toString().replace(/\\'/g,"'")
 																	}	  
 
 																	var clean = message.message.toString().replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");																																		
-																	var clean5 = message.message.toString().replace(/\\/g,"");
+																	var clean5 = message.message.toString().replace(/\\'/g,"'");
 																	console.log(clean2)
 																	console.log(clean3)
 																	console.log(clean5)
