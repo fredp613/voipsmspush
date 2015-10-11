@@ -120,6 +120,9 @@ function PushLoop() {};
 
 																	var clean = message.message.toString().replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 																	var clean2 = message.message.replace("\u2019", "'");
+																	var clean3 = message.message.replace("'", "\u2019");
+																	console.log(clean2)
+																	console.log(clean3)
 																			 										
 																	var note = new apns.Notification();
 																	var myDevice = new apns.Device(message.device_token);
