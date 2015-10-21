@@ -107,25 +107,23 @@ function PushLoop() {};
 																} else {
 																	  					 											  					 										  					 							
 																	console.log(message.device_token)
-																	var messageStringCleaned = message.message.toString().replace(/\\/g,"");																																				 							
+																		var messageStringCleaned = message.message.toString().replace(/\\/g,"");																																				 							
 
-																	var payload = {
-																		"contact" : message.contact,
-																		"did" : message.did,
-																		"id" : message.message_id,
-																		"date" : message.date,
-																		"message" : messageStringCleaned
-																	}	  
+																		var payload = {
+																			"contact" : message.contact,
+																			"did" : message.did,
+																			"id" : message.message_id,
+																			"date" : message.date,
+																			"message" : messageStringCleaned
+																		}	  																	
 
-																var clean = message.message.toString().replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");																																		
-																
-																var note = new apns.Notification();
-																var myDevice = new apns.Device(message.device_token);
-																note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
-																note.badge = 3;																	
-																note.alert = messageStringCleaned;
-																note.payload = payload;
-																apnsConnection.pushNotification(note, myDevice);																	
+																	var note = new apns.Notification();
+																	var myDevice = new apns.Device(message.device_token);
+																	note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
+																	note.badge = 3;																	
+																	note.alert = messageStringCleaned;
+																	note.payload = payload;
+																	apnsConnection.pushNotification(note, myDevice);																	
 															}
 															})											  																									  									  
 											  	}					  			  																													  			
