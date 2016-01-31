@@ -13,4 +13,6 @@ npm-debug.log
 #/certs
 #!/certs/.gitkeep
 
+/images
+
 .DS_Store

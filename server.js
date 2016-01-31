@@ -16,6 +16,10 @@ if (process.env.MONGOLAB_URI) {
 	connection_string = process.env.MONGOLAB_URI	
 }
 
+app.use(express.static(__dirname + '/'));
+app.use(express.static(__dirname + '/script'));
+app.use(express.static(__dirname + '/images'));
+
 console.log("connection string is:" + connection_string)
 
 mongoose.connect(connection_string, function (error) {
@@ -24,6 +28,11 @@ mongoose.connect(connection_string, function (error) {
 });
 app.use(bodyParser()); 
 app.use(bodyParser.json());  
+
+
+app.get("/", function (req, res) {	
+	res.sendFile("index.html")
+});
 
 app.get("/users", function (req, res) {	
 	res.send({"status":"success"})
