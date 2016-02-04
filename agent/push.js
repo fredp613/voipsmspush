@@ -51,6 +51,30 @@ var options = {
 
 var apnsConnection = new apns.Connection(options);
 
+apnsConnection.on("connected", function() {
+    console.log("Connected");
+});
+
+apnsConnection.on("transmitted", function(notification, device) {
+    console.log("Notification transmitted to:" + device.token.toString("hex"));
+});
+
+apnsConnection.on("transmissionError", function(errCode, notification, device) {
+    console.error("Notification caused error: " + errCode + " for device ", device, notification);
+    if (errCode === 8) {
+        console.log("A error code of 8 indicates that the device token is invalid. This could be for a number of reasons - are you using the correct environment? i.e. Production vs. Sandbox");
+    }
+});
+
+apnsConnection.on("timeout", function () {
+    console.log("Connection Timeout");
+});
+
+apnsConnection.on("disconnected", function() {
+    console.log("Disconnected from APNS");
+});
+
+apnsConnection.on("socketError", console.error);
 
 
 
