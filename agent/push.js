@@ -122,7 +122,7 @@ function PushLoop() {};
 																	note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
 																	note.badge = 1;																	
 																	note.alert = messageStringCleaned;
-																	note.sound = "ping.aiff";
+																	note.sound = "default";
 																	note.payload = payload;
 																	apnsConnection.pushNotification(note, myDevice);																	
 															}
