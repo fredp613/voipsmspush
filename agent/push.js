@@ -124,6 +124,7 @@ function PushLoop() {};
 																	note.alert = messageStringCleaned;
 																	note.sound = "default";
 																	note.payload = payload;
+																	console.log(note)
 																	apnsConnection.pushNotification(note, myDevice);																	
 															}
 															})											  																									  									  
