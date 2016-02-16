@@ -44,7 +44,7 @@ app.get("/users/:id", function (req, res) {
 	res.send({"status":"success"})
 });
 
-app.get("users/:token", function(req, res) {
+app.get("isregistered/:token", function(req, res) {
 	var token = req.params.token;
 	User.findOne({ device_token: token}, function (err, doc){	  
 		if (err) console.log(err);
