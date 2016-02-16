@@ -44,6 +44,19 @@ app.get("/users/:id", function (req, res) {
 	res.send({"status":"success"})
 });
 
+app.get("users/:token", function(req, res) {
+	var token = req.params.token;
+	User.findOne({ device_token: token}, function (err, doc){	  
+		if (err) console.log(err);
+	  if (!doc) {			  	
+			res.send("isRegistered":"false");
+	  } else {
+	  	 res.send("isRegistered":"true");			  
+	  }
+	}); 
+
+})
+
 app.post("/users", function (req, res) {
 	// console.log(req.body);
 	var email = req.body.user.email;
