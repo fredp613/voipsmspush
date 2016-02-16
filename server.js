@@ -41,10 +41,7 @@ app.get("/users", function (req, res) {
 app.get("/users/:id", function (req, res) {
 	var id = req.params.id;
 	var color = req.query.color;
-	res.send({"status":"success"})
-});
 
-app.get("isregistered/:token", function(req, res) {
 	var token = req.params.token;
 	User.findOne({ device_token: token}, function (err, doc){	  
 		if (err) console.log(err);
@@ -55,7 +52,9 @@ app.get("isregistered/:token", function(req, res) {
 	  }
 	}); 
 
-})
+	// res.send({"status":"success"})
+});
+
 
 app.post("/users", function (req, res) {
 	// console.log(req.body);
