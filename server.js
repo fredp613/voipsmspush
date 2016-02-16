@@ -42,7 +42,7 @@ app.get("/users/:id", function (req, res) {
 	var id = req.params.id;
 	var color = req.query.color;
 
-	var token = req.params.token;
+	var token = req.params.id;
 	User.findOne({ device_token: token}, function (err, doc){	  
 		if (err) console.log(err);
 	  if (!doc) {			  	
