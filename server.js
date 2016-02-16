@@ -49,9 +49,9 @@ app.get("users/:token", function(req, res) {
 	User.findOne({ device_token: token}, function (err, doc){	  
 		if (err) console.log(err);
 	  if (!doc) {			  	
-			res.send("isRegistered":"false");
+			res.send({"isRegistered":"false"});
 	  } else {
-	  	 res.send("isRegistered":"true");			  
+	  	 res.send({"isRegistered":"true"});			  
 	  }
 	}); 
 
