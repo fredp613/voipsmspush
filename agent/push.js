@@ -105,64 +105,84 @@ function PushLoop() {};
 					  		
 
 				  		messages.forEach(function(m) {
-				  						  									  			
-								var query = { $and : [{message_id: m.id}, {device_token: arg.device_token}] }
-								var query1 = { message_id: m.id }
+				  			
+				  			var message = new Message({
+									  message_id: m.id, 
+									  did: m.did,
+									  contact: m.contact, 
+									  message: m.message,
+									  date: m.date,
+									  created_at: new Date().toLocaleString(),
+									  updated_at: new Date().toLocaleString(),
+									  device_token: arg.device_token  	 
+									});					  			
+									var query = { $and : [{message_id: m.id}, {device_token: arg.device_token}] }
+									var query1 = { message_id: m.id }
 
-									Message.findOne(query).lean().exec(function (err, doc){									
 
-									 if (!doc || doc == null) {
-									 		
-									 		//instantiate new message object for saving
-									 		var message = new Message({
-												  message_id: m.id, 
-												  did: m.did,
-												  contact: m.contact, 
-												  message: m.message,
-												  date: m.date,
-												  created_at: new Date().toLocaleString(),
-												  updated_at: new Date().toLocaleString(),
-												  device_token: arg.device_token  	 
-											});							  					 	 
-											message.save(function(e) {
-												console.log("message saved")
-												if (e) {
-													console.log("there is an error")
-													console.log(e)
-												} else {
-													  					 											  					 										  					 							
-													console.log(message.device_token)
-														var messageStringCleaned = message.message.toString().replace(/\\/g,"");																																				 							
+									Message.findOne(query).lean().exec(function (err, doc){
 
-														var payload = {
-															"contact" : message.contact,
-															"did" : message.did,
-															"id" : message.message_id,
-															"date" : message.date,
-															"message" : messageStringCleaned
-														}	  																	
+											 if (!doc || doc == null) {						  					 	 
+															message.save(function(e) {
+																console.log("message saved")
+																if (e) {
+																	console.log("there is an error")
+																	console.log(e)
+																} else {
+																	  					 											  					 										  					 							
+																	console.log(message.device_token)
+																		var messageStringCleaned = message.message.toString().replace(/\\/g,"");																																				 							
 
-													var note = new apns.Notification();
-													var myDevice = new apns.Device(message.device_token);
-													note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
-													note.badge = 0;																	
-													note.alert = messageStringCleaned;
-													note.sound = "default";
-													note.payload = payload;
-													console.log(note)
-													apnsConnection.pushNotification(note, myDevice);																	
-												}
-											})											  																									  									  
-									  	}					  			  																													  			
-									});	
-							});				  		
+																		var payload = {
+																			"contact" : message.contact,
+																			"did" : message.did,
+																			"id" : message.message_id,
+																			"date" : message.date,
+																			"message" : messageStringCleaned
+																		}	  																	
 
-					  	 } else {
+																	var note = new apns.Notification();
+																	var myDevice = new apns.Device(message.device_token);
+																	note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
+																	note.badge = 0;																	
+																	note.alert = messageStringCleaned;
+																	note.sound = "default";
+																	note.payload = payload;
+																	console.log(note)
+																	apnsConnection.pushNotification(note, myDevice);																	
+															}
+															})											  																									  									  
+											  	}					  			  																													  			
+											});	
+									});				  		
+					  	}
+						  else {
 						  	console.log(err)
 						  }
 						}					
-					});				  			 
-			}			
+					});	
+			  
+			  setTimeout(function() { 			  
+			  	callback(arg + "testing 12"); 
+			  }, 1000);
+			}
+			// Final task (same in all the examples)			
+			function series(item) {
+				  if(item) {
+				    async( item, function(result) {				    					    	
+				      results.push(result);	      
+				      return series(userArr.shift());
+				    });
+				  } else {
+				    return final();
+				  }
+			}
+			function final() { 
+				console.log('Done'); 
+				startLoop();
+			}
+
+			series(userArr.shift())
 		});
 	}
 }
@@ -185,5 +205,4 @@ module.exports = PushLoop;
 
 
     
-
 
